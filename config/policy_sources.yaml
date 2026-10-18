@@ -1,0 +1,27 @@
+# Official policy pages, topic -> URL(s).
+# RULE: every URL here was opened and checked by a person/agent on the live site.
+# Never add a guessed or constructed URL. Record when and what was verified.
+
+indigo:
+  name: IndiGo
+  homepage: https://www.goindigo.in
+  topics:
+    baggage:
+      - url: https://www.goindigo.in/baggage/baggage-allowance.html
+        verified_on: 2026-10-18
+        covers: "Free hand & check-in baggage by sector (domestic 15 kg; international by destination), infant allowance, connecting flights"
+    cancellation:
+      - url: https://www.goindigo.in/travel-information/en/fees-and-charges.html
+        verified_on: 2026-10-18
+        covers: "48-hour Look-in rule and its conditions; codeshare Saver/Stretch/Stretch+ change & cancellation fee tables. Links out for IndiGo's own domestic fee table"
+    web_checkin:
+      - url: https://www.goindigo.in/web-check-in.html
+        verified_on: 2026-10-18
+        covers: "Web check-in window domestic (48 h to 60 min) and international (24 h to 75 min); counter closing times"
+      - url: https://www.goindigo.in/travel-information/en/check-in-options.html
+        verified_on: 2026-10-18
+        covers: "Web/kiosk/mobile check-in FAQs and web check-in eligibility exclusions"
+
+# Checked but not used (2026-10-18):
+#  - https://www.goindigo.in/information/conditions-of-carriage.html  (very long legal text; blocked on repeat visits)
+#  - https://www.goindigo.in/information/fees-and-charges.html        (duplicate of the travel-information page)

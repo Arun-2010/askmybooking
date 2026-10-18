@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block title %}Your booking · TestAir{% endblock %}
+{% block content %}
+<div class="card" id="booking-root">
+  <p class="muted" id="loading">Loading your booking…</p>
+</div>
+<script>
+const LOOKUP = {{ lookup | safe }};
+const QS = {{ qs | tojson }};
+const root = document.getElementById('booking-root');
+function esc(s){ return String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
+fetch('/api/v1/bookings/lookup' + (QS ? '?' + QS : ''), {
+  method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify(LOOKUP)
+}).then(async r => {
+  const data = await r.json().catch(() => ({}));
+  if (r.status === 404) { root.innerHTML = '<p class="error" id="not-found">' + esc(data.message || 'Booking not found') + '</p>'; return; }
+  if (!r.ok) { root.innerHTML = '<p class="error" id="load-error">We could not load your booking right now.</p>'; return; }
+  const segs = data.journeys.flatMap(j => j.segments);
+  root.innerHTML = `
+    <h2>Booking <span data-field="pnr">${esc(data.bookingRef)}</span></h2>
+    <p>Status: <b data-field="status">${esc(data.status)}</b> · Booked on <span data-field="created">${esc(data.createdAt)}</span>
+       via <span data-field="channel">${esc(data.channel)}</span></p>
+    <p>Fare: <span data-field="fare-code">${esc(data.fare.code)}</span> (${esc(data.fare.name)}) · Cabin: <span data-field="cabin">${esc(data.fare.cabin)}</span></p>
+    <h3>Flights</h3>
+    <ul id="segments">${segs.map(s => `<li class="segment" data-flight="${esc(s.flightNo)}" data-from="${esc(s.from.code)}" data-to="${esc(s.to.code)}" data-dep="${esc(s.departureLocal)}" data-intl="${s.international}">
+        ${esc(s.flightNo)}: ${esc(s.from.city)} (${esc(s.from.code)}) → ${esc(s.to.city)} (${esc(s.to.code)}), departs ${esc(s.departureLocal)}</li>`).join('')}</ul>
+    <h3>Passengers</h3>
+    <ul id="passengers">${data.passengers.map(p => `<li class="passenger" data-type="${esc(p.paxType)}" data-extra-kg="${p.addOns.extraBaggageKg}">
+        ${esc(p.firstName)} ${esc(p.lastName)} (${esc(p.paxType)})${p.addOns.extraBaggageKg ? ' · extra baggage ' + p.addOns.extraBaggageKg + ' kg' : ''}</li>`).join('')}</ul>`;
+});
+</script>
+{% endblock %}

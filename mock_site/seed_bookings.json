@@ -1,0 +1,1578 @@
+{
+  "_comment": "FICTIONAL TestAir bookings for testing only. Times are relative.",
+  "bookings": [
+    {
+      "pnr": "TPEG9A",
+      "last_name": "Trialpur",
+      "status": "confirmed",
+      "fare_code": "TA-LITE",
+      "cabin": "Economy",
+      "booked_via": "website",
+      "created_hours_ago": 240,
+      "segments": [
+        {
+          "flight_number": "TA 985",
+          "origin": "HYD",
+          "destination": "CCU",
+          "departs_in_days": 5,
+          "dep_time": "19:00",
+          "duration_min": 126
+        }
+      ],
+      "passengers": [
+        {
+          "type": "adult",
+          "first_name": "Kabir",
+          "last_name": "Trialpur",
+          "extra_baggage_kg": 0
+        }
+      ],
+      "tags": [
+        "domestic",
+        "fare:TA-LITE"
+      ],
+      "note": "",
+      "id": "TA001"
+    },
+    {
+      "pnr": "T7Q895",
+      "last_name": "Seedappa",
+      "status": "confirmed",
+      "fare_code": "TA-SAVE",
+      "cabin": "Economy",
+      "booked_via": "website",
+      "created_hours_ago": 240,
+      "segments": [
+        {
+          "flight_number": "TA 741",
+          "origin": "BOM",
+          "destination": "BLR",
+          "departs_in_days": 5,
+          "dep_time": "06:00",
+          "duration_min": 156
+        }
+      ],
+      "passengers": [
+        {
+          "type": "adult",
+          "first_name": "Neel",
+          "last_name": "Seedappa",
+          "extra_baggage_kg": 0
+        }
+      ],
+      "tags": [
+        "domestic",
+        "fare:TA-SAVE"
+      ],
+      "note": "",
+      "id": "TA002"
+    },
+    {
+      "pnr": "TJHV3N",
+      "last_name": "Fakir",
+      "status": "confirmed",
+      "fare_code": "TA-SAVE",
+      "cabin": "Economy",
+      "booked_via": "website",
+      "created_hours_ago": 240,
+      "segments": [
+        {
+          "flight_number": "TA 794",
+          "origin": "DEL",
+          "destination": "PNQ",
+          "departs_in_days": 30,
+          "dep_time": "11:15",
+          "duration_min": 75
+        }
+      ],
+      "passengers": [
+        {
+          "type": "adult",
+          "first_name": "Diya",
+          "last_name": "Fakir",
+          "extra_baggage_kg": 0
+        }
+      ],
+      "tags": [
+        "domestic",
+        "fare:TA-SAVE"
+      ],
+      "note": "",
+      "id": "TA003"
+    },
+    {
+      "pnr": "T43M76",
+      "last_name": "Testwala",
+      "status": "confirmed",
+      "fare_code": "TA-FLEX",
+      "cabin": "Economy",
+      "booked_via": "website",
+      "created_hours_ago": 240,
+      "segments": [
+        {
+          "flight_number": "TA 309",
+          "origin": "CCU",
+          "destination": "LKO",
+          "departs_in_days": 21,
+          "dep_time": "08:00",
+          "duration_min": 129
+        }
+      ],
+      "passengers": [
+        {
+          "type": "adult",
+          "first_name": "Vihaan",
+          "last_name": "Testwala",
+          "extra_baggage_kg": 0
+        }
+      ],
+      "tags": [
+        "domestic",
+        "fare:TA-FLEX"
+      ],
+      "note": "",
+      "id": "TA004"
+    },
+    {
+      "pnr": "TT2C93",
+      "last_name": "Examplay",
+      "status": "confirmed",
+      "fare_code": "TA-FLEX",
+      "cabin": "Economy",
+      "booked_via": "website",
+      "created_hours_ago": 240,
+      "segments": [
+        {
+          "flight_number": "TA 581",
+          "origin": "AMD",
+          "destination": "MAA",
+          "departs_in_days": 21,
+          "dep_time": "15:00",
+          "duration_min": 75
+        }
+      ],
+      "passengers": [
+        {
+          "type": "adult",
+          "first_name": "Pooja",
+          "last_name": "Examplay",
+          "extra_baggage_kg": 0
+        }
+      ],
+      "tags": [
+        "domestic",
+        "fare:TA-FLEX"
+      ],
+      "note": "",
+      "id": "TA005"
+    },
+    {
+      "pnr": "T6QKJG",
+      "last_name": "Examplay",
+      "status": "confirmed",
+      "fare_code": "TA-PLUS",
+      "cabin": "Economy",
+      "booked_via": "website",
+      "created_hours_ago": 240,
+      "segments": [
+        {
+          "flight_number": "TA 938",
+          "origin": "GOI",
+          "destination": "LKO",
+          "departs_in_days": 30,
+          "dep_time": "12:30",
+          "duration_min": 97
+        }
+      ],
+      "passengers": [
+        {
+          "type": "adult",
+          "first_name": "Kavya",
+          "last_name": "Examplay",
+          "extra_baggage_kg": 0
+        }
+      ],
+      "tags": [
+        "domestic",
+        "fare:TA-PLUS"
+      ],
+      "note": "",
+      "id": "TA006"
+    },
+    {
+      "pnr": "TTS2T2",
+      "last_name": "Fakir",
+      "status": "confirmed",
+      "fare_code": "TA-PLUS",
+      "cabin": "Economy",
+      "booked_via": "website",
+      "created_hours_ago": 240,
+      "segments": [
+        {
+          "flight_number": "TA 133",
+          "origin": "BLR",
+          "destination": "LKO",
+          "departs_in_days": 30,
+          "dep_time": "06:45",
+          "duration_min": 112
+        }
+      ],
+      "passengers": [
+        {
+          "type": "adult",
+          "first_name": "Nikhil",
+          "last_name": "Fakir",
+          "extra_baggage_kg": 0
+        }
+      ],
+      "tags": [
+        "domestic",
+        "fare:TA-PLUS"
+      ],
+      "note": "",
+      "id": "TA007"
+    },
+    {
+      "pnr": "T7NPJQ",
+      "last_name": "Examplay",
+      "status": "confirmed",
+      "fare_code": "TA-BIZ",
+      "cabin": "Business",
+      "booked_via": "website",
+      "created_hours_ago": 240,
+      "segments": [
+        {
+          "flight_number": "TA 868",
+          "origin": "AMD",
+          "destination": "COK",
+          "departs_in_days": 21,
+          "dep_time": "11:00",
+          "duration_min": 115
+        }
+      ],
+      "passengers": [
+        {
+          "type": "adult",
+          "first_name": "Aditya",
+          "last_name": "Examplay",
+          "extra_baggage_kg": 0
+        }
+      ],
+      "tags": [
+        "domestic",
+        "business",
+        "fare:TA-BIZ"
+      ],
+      "note": "",
+      "id": "TA008"
+    },
+    {
+      "pnr": "TV6DSB",
+      "last_name": "Placeholder",
+      "status": "confirmed",
+      "fare_code": "TA-BIZ",
+      "cabin": "Business",
+      "booked_via": "website",
+      "created_hours_ago": 240,
+      "segments": [
+        {
+          "flight_number": "TA 254",
+          "origin": "JAI",
+          "destination": "GOI",
+          "departs_in_days": 5,
+          "dep_time": "13:30",
+          "duration_min": 150
+        }
+      ],
+      "passengers": [
+        {
+          "type": "adult",
+          "first_name": "Isha",
+          "last_name": "Placeholder",
+          "extra_baggage_kg": 0
+        }
+      ],
+      "tags": [
+        "domestic",
+        "business",
+        "fare:TA-BIZ"
+      ],
+      "note": "",
+      "id": "TA009"
+    },
+    {
+      "pnr": "T233MK",
+      "last_name": "Sampleton",
+      "status": "confirmed",
+      "fare_code": "TA-LITE",
+      "cabin": "Economy",
+      "booked_via": "website",
+      "created_hours_ago": 240,
+      "segments": [
+        {
+          "flight_number": "TA 791",
+          "origin": "LKO",
+          "destination": "AMD",
+          "departs_in_days": 30,
+          "dep_time": "06:00",
+          "duration_min": 92
+        }
+      ],
+      "passengers": [
+        {
+          "type": "adult",
+          "first_name": "Vihaan",
+          "last_name": "Sampleton",
+          "extra_baggage_kg": 0
+        }
+      ],
+      "tags": [
+        "domestic",
+        "fare:TA-LITE"
+      ],
+      "note": "",
+      "id": "TA010"
+    },
+    {
+      "pnr": "T6G9CH",
+      "last_name": "Seedappa",
+      "status": "confirmed",
+      "fare_code": "TA-SAVE",
+      "cabin": "Economy",
+      "booked_via": "website",
+      "created_hours_ago": 240,
+      "segments": [
+        {
+          "flight_number": "TA 909",
+          "origin": "GOI",
+          "destination": "BLR",
+          "departs_in_days": 30,
+          "dep_time": "09:15",
+          "duration_min": 75
+        }
+      ],
+      "passengers": [
+        {
+          "type": "adult",
+          "first_name": "Tara",
+          "last_name": "Seedappa",
+          "extra_baggage_kg": 5
+        }
+      ],
+      "tags": [
+        "domestic",
+        "extra_baggage"
+      ],
+      "note": "",
+      "id": "TA011"
+    },
+    {
+      "pnr": "TZG65B",
+      "last_name": "Trialpur",
+      "status": "confirmed",
+      "fare_code": "TA-SAVE",
+      "cabin": "Economy",
+      "booked_via": "website",
+      "created_hours_ago": 240,
+      "segments": [
+        {
+          "flight_number": "TA 467",
+          "origin": "AMD",
+          "destination": "BLR",
+          "departs_in_days": 5,
+          "dep_time": "14:15",
+          "duration_min": 98
+        }
+      ],
+      "passengers": [
+        {
+          "type": "adult",
+          "first_name": "Riya",
+          "last_name": "Trialpur",
+          "extra_baggage_kg": 10
+        }
+      ],
+      "tags": [
+        "domestic",
+        "extra_baggage"
+      ],
+      "note": "",
+      "id": "TA012"
+    },
+    {
+      "pnr": "TMAG2C",
+      "last_name": "Notreal",
+      "status": "confirmed",
+      "fare_code": "TA-FLEX",
+      "cabin": "Economy",
+      "booked_via": "website",
+      "created_hours_ago": 240,
+      "segments": [
+        {
+          "flight_number": "TA 804",
+          "origin": "COK",
+          "destination": "JAI",
+          "departs_in_days": 9,
+          "dep_time": "10:30",
+          "duration_min": 95
+        }
+      ],
+      "passengers": [
+        {
+          "type": "adult",
+          "first_name": "Ananya",
+          "last_name": "Notreal",
+          "extra_baggage_kg": 15
+        }
+      ],
+      "tags": [
+        "domestic",
+        "extra_baggage"
+      ],
+      "note": "",
+      "id": "TA013"
+    },
+    {
+      "pnr": "TBV6B6",
+      "last_name": "Demoji",
+      "status": "confirmed",
+      "fare_code": "TA-SAVE",
+      "cabin": "Economy",
+      "booked_via": "website",
+      "created_hours_ago": 240,
+      "segments": [
+        {
+          "flight_number": "TA 197",
+          "origin": "BLR",
+          "destination": "AMD",
+          "departs_in_days": 21,
+          "dep_time": "10:15",
+          "duration_min": 172
+        }
+      ],
+      "passengers": [
+        {
+          "type": "adult",
+          "first_name": "Aarav",
+          "last_name": "Demoji",
+          "extra_baggage_kg": 20
+        }
+      ],
+      "tags": [
+        "domestic",
+        "extra_baggage"
+      ],
+      "note": "",
+      "id": "TA014"
+    },
+    {
+      "pnr": "TLUC6T",
+      "last_name": "Sampleton",
+      "status": "confirmed",
+      "fare_code": "TA-LITE",
+      "cabin": "Economy",
+      "booked_via": "website",
+      "created_hours_ago": 240,
+      "segments": [
+        {
+          "flight_number": "TA 454",
+          "origin": "LKO",
+          "destination": "AMD",
+          "departs_in_days": 21,
+          "dep_time": "10:45",
+          "duration_min": 74
+        }
+      ],
+      "passengers": [
+        {
+          "type": "adult",
+          "first_name": "Dev",
+          "last_name": "Sampleton",
+          "extra_baggage_kg": 5
+        }
+      ],
+      "tags": [
+        "domestic",
+        "extra_baggage"
+      ],
+      "note": "",
+      "id": "TA015"
+    },
+    {
+      "pnr": "T8AUKS",
+      "last_name": "Testwala",
+      "status": "confirmed",
+      "fare_code": "TA-SAVE",
+      "cabin": "Economy",
+      "booked_via": "website",
+      "created_hours_ago": 240,
+      "segments": [
+        {
+          "flight_number": "TA 196",
+          "origin": "LKO",
+          "destination": "GOI",
+          "departs_in_days": 14,
+          "dep_time": "18:30",
+          "duration_min": 138
+        }
+      ],
+      "passengers": [
+        {
+          "type": "adult",
+          "first_name": "Nikhil",
+          "last_name": "Testwala",
+          "extra_baggage_kg": 0
+        },
+        {
+          "type": "infant",
+          "first_name": "Rohan",
+          "last_name": "Testwala",
+          "extra_baggage_kg": 0
+        }
+      ],
+      "tags": [
+        "domestic",
+        "infant"
+      ],
+      "note": "",
+      "id": "TA016"
+    },
+    {
+      "pnr": "T6PE92",
+      "last_name": "Fakir",
+      "status": "confirmed",
+      "fare_code": "TA-FLEX",
+      "cabin": "Economy",
+      "booked_via": "website",
+      "created_hours_ago": 240,
+      "segments": [
+        {
+          "flight_number": "TA 949",
+          "origin": "GOI",
+          "destination": "JAI",
+          "departs_in_days": 30,
+          "dep_time": "12:45",
+          "duration_min": 108
+        }
+      ],
+      "passengers": [
+        {
+          "type": "adult",
+          "first_name": "Leela",
+          "last_name": "Fakir",
+          "extra_baggage_kg": 0
+        },
+        {
+          "type": "adult",
+          "first_name": "Isha",
+          "last_name": "Fakir",
+          "extra_baggage_kg": 0
+        },
+        {
+          "type": "infant",
+          "first_name": "Riya",
+          "last_name": "Fakir",
+          "extra_baggage_kg": 0
+        }
+      ],
+      "tags": [
+        "domestic",
+        "infant",
+        "family"
+      ],
+      "note": "",
+      "id": "TA017"
+    },
+    {
+      "pnr": "TB42J3",
+      "last_name": "Dummyram",
+      "status": "confirmed",
+      "fare_code": "TA-SAVE",
+      "cabin": "Economy",
+      "booked_via": "website",
+      "created_hours_ago": 240,
+      "segments": [
+        {
+          "flight_number": "TA 614",
+          "origin": "MAA",
+          "destination": "BLR",
+          "departs_in_days": 21,
+          "dep_time": "10:15",
+          "duration_min": 184
+        }
+      ],
+      "passengers": [
+        {
+          "type": "adult",
+          "first_name": "Yash",
+          "last_name": "Dummyram",
+          "extra_baggage_kg": 0
+        },
+        {
+          "type": "child",
+          "first_name": "Ananya",
+          "last_name": "Dummyram",
+          "extra_baggage_kg": 0
+        }
+      ],
+      "tags": [
+        "domestic",
+        "child"
+      ],
+      "note": "",
+      "id": "TA018"
+    },
+    {
+      "pnr": "TXWQ3B",
+      "last_name": "Demoji",
+      "status": "confirmed",
+      "fare_code": "TA-SAVE",
+      "cabin": "Economy",
+      "booked_via": "website",
+      "created_hours_ago": 240,
+      "segments": [
+        {
+          "flight_number": "TA 103",
+          "origin": "CCU",
+          "destination": "AMD",
+          "departs_in_days": 30,
+          "dep_time": "20:15",
+          "duration_min": 124
+        }
+      ],
+      "passengers": [
+        {
+          "type": "adult",
+          "first_name": "Aarav",
+          "last_name": "Demoji",
+          "extra_baggage_kg": 10
+        },
+        {
+          "type": "adult",
+          "first_name": "Aarav",
+          "last_name": "Demoji",
+          "extra_baggage_kg": 0
+        },
+        {
+          "type": "child",
+          "first_name": "Meera",
+          "last_name": "Demoji",
+          "extra_baggage_kg": 0
+        },
+        {
+          "type": "child",
+          "first_name": "Isha",
+          "last_name": "Demoji",
+          "extra_baggage_kg": 0
+        }
+      ],
+      "tags": [
+        "domestic",
+        "child",
+        "family",
+        "extra_baggage"
+      ],
+      "note": "",
+      "id": "TA019"
+    },
+    {
+      "pnr": "T3WZR6",
+      "last_name": "Demoji",
+      "status": "confirmed",
+      "fare_code": "TA-SAVE",
+      "cabin": "Economy",
+      "booked_via": "website",
+      "created_hours_ago": 240,
+      "segments": [
+        {
+          "flight_number": "TA 122",
+          "origin": "DEL",
+          "destination": "DXB",
+          "departs_in_days": 20,
+          "dep_time": "07:15",
+          "duration_min": 472
+        }
+      ],
+      "passengers": [
+        {
+          "type": "adult",
+          "first_name": "Sara",
+          "last_name": "Demoji",
+          "extra_baggage_kg": 0
+        },
+        {
+          "type": "infant",
+          "first_name": "Ananya",
+          "last_name": "Demoji",
+          "extra_baggage_kg": 0
+        }
+      ],
+      "tags": [
+        "international",
+        "infant"
+      ],
+      "note": "",
+      "id": "TA020"
+    },
+    {
+      "pnr": "T9JCLA",
+      "last_name": "Dummyram",
+      "status": "confirmed",
+      "fare_code": "TA-SAVE",
+      "cabin": "Economy",
+      "booked_via": "website",
+      "created_hours_ago": 240,
+      "segments": [
+        {
+          "flight_number": "TA 308",
+          "origin": "AMD",
+          "destination": "DEL",
+          "departs_in_days": 25,
+          "dep_time": "06:30",
+          "duration_min": 184
+        },
+        {
+          "flight_number": "TA 693",
+          "origin": "DEL",
+          "destination": "HYD",
+          "departs_in_days": 25.15,
+          "dep_time": "11:10",
+          "duration_min": 197
+        }
+      ],
+      "passengers": [
+        {
+          "type": "adult",
+          "first_name": "Aarav",
+          "last_name": "Dummyram",
+          "extra_baggage_kg": 0
+        }
+      ],
+      "tags": [
+        "domestic",
+        "connecting"
+      ],
+      "note": "",
+      "id": "TA021"
+    },
+    {
+      "pnr": "TEYLW6",
+      "last_name": "Trialpur",
+      "status": "confirmed",
+      "fare_code": "TA-SAVE",
+      "cabin": "Economy",
+      "booked_via": "website",
+      "created_hours_ago": 240,
+      "segments": [
+        {
+          "flight_number": "TA 445",
+          "origin": "BOM",
+          "destination": "BLR",
+          "departs_in_days": 12,
+          "dep_time": "06:30",
+          "duration_min": 75
+        },
+        {
+          "flight_number": "TA 473",
+          "origin": "BLR",
+          "destination": "HYD",
+          "departs_in_days": 12.15,
+          "dep_time": "11:10",
+          "duration_min": 78
+        }
+      ],
+      "passengers": [
+        {
+          "type": "adult",
+          "first_name": "Rohan",
+          "last_name": "Trialpur",
+          "extra_baggage_kg": 0
+        }
+      ],
+      "tags": [
+        "domestic",
+        "connecting"
+      ],
+      "note": "",
+      "id": "TA022"
+    },
+    {
+      "pnr": "TQBP7T",
+      "last_name": "Trialpur",
+      "status": "confirmed",
+      "fare_code": "TA-SAVE",
+      "cabin": "Economy",
+      "booked_via": "website",
+      "created_hours_ago": 240,
+      "segments": [
+        {
+          "flight_number": "TA 899",
+          "origin": "PNQ",
+          "destination": "BOM",
+          "departs_in_days": 5,
+          "dep_time": "06:30",
+          "duration_min": 78
+        },
+        {
+          "flight_number": "TA 116",
+          "origin": "BOM",
+          "destination": "JAI",
+          "departs_in_days": 5.15,
+          "dep_time": "11:10",
+          "duration_min": 126
+        }
+      ],
+      "passengers": [
+        {
+          "type": "adult",
+          "first_name": "Yash",
+          "last_name": "Trialpur",
+          "extra_baggage_kg": 0
+        }
+      ],
+      "tags": [
+        "domestic",
+        "connecting"
+      ],
+      "note": "",
+      "id": "TA023"
+    },
+    {
+      "pnr": "TGR38T",
+      "last_name": "Mockrao",
+      "status": "confirmed",
+      "fare_code": "TA-SAVE",
+      "cabin": "Economy",
+      "booked_via": "website",
+      "created_hours_ago": 240,
+      "segments": [
+        {
+          "flight_number": "TA 430",
+          "origin": "BLR",
+          "destination": "BOM",
+          "departs_in_days": 18,
+          "dep_time": "05:45",
+          "duration_min": 152
+        },
+        {
+          "flight_number": "TA 141",
+          "origin": "BOM",
+          "destination": "LHR",
+          "departs_in_days": 18.2,
+          "dep_time": "10:20",
+          "duration_min": 343
+        }
+      ],
+      "passengers": [
+        {
+          "type": "adult",
+          "first_name": "Neel",
+          "last_name": "Mockrao",
+          "extra_baggage_kg": 0
+        }
+      ],
+      "tags": [
+        "international",
+        "connecting"
+      ],
+      "note": "",
+      "id": "TA024"
+    },
+    {
+      "pnr": "TN7ZU7",
+      "last_name": "Notreal",
+      "status": "confirmed",
+      "fare_code": "TA-SAVE",
+      "cabin": "Economy",
+      "booked_via": "website",
+      "created_hours_ago": 240,
+      "segments": [
+        {
+          "flight_number": "TA 961",
+          "origin": "HYD",
+          "destination": "DXB",
+          "departs_in_days": 16,
+          "dep_time": "09:45",
+          "duration_min": 524
+        }
+      ],
+      "passengers": [
+        {
+          "type": "adult",
+          "first_name": "Sara",
+          "last_name": "Notreal",
+          "extra_baggage_kg": 0
+        }
+      ],
+      "tags": [
+        "international",
+        "fare:TA-SAVE"
+      ],
+      "note": "",
+      "id": "TA025"
+    },
+    {
+      "pnr": "T3NAFH",
+      "last_name": "Notreal",
+      "status": "confirmed",
+      "fare_code": "TA-SAVE",
+      "cabin": "Economy",
+      "booked_via": "website",
+      "created_hours_ago": 240,
+      "segments": [
+        {
+          "flight_number": "TA 750",
+          "origin": "BOM",
+          "destination": "SIN",
+          "departs_in_days": 16,
+          "dep_time": "19:00",
+          "duration_min": 467
+        }
+      ],
+      "passengers": [
+        {
+          "type": "adult",
+          "first_name": "Yash",
+          "last_name": "Notreal",
+          "extra_baggage_kg": 0
+        }
+      ],
+      "tags": [
+        "international",
+        "fare:TA-SAVE"
+      ],
+      "note": "",
+      "id": "TA026"
+    },
+    {
+      "pnr": "T5D728",
+      "last_name": "Pretendra",
+      "status": "confirmed",
+      "fare_code": "TA-FLEX",
+      "cabin": "Economy",
+      "booked_via": "website",
+      "created_hours_ago": 240,
+      "segments": [
+        {
+          "flight_number": "TA 742",
+          "origin": "BLR",
+          "destination": "BKK",
+          "departs_in_days": 40,
+          "dep_time": "19:00",
+          "duration_min": 220
+        }
+      ],
+      "passengers": [
+        {
+          "type": "adult",
+          "first_name": "Isha",
+          "last_name": "Pretendra",
+          "extra_baggage_kg": 0
+        }
+      ],
+      "tags": [
+        "international",
+        "fare:TA-FLEX"
+      ],
+      "note": "",
+      "id": "TA027"
+    },
+    {
+      "pnr": "T3YLZM",
+      "last_name": "Dummyram",
+      "status": "confirmed",
+      "fare_code": "TA-SAVE",
+      "cabin": "Economy",
+      "booked_via": "website",
+      "created_hours_ago": 240,
+      "segments": [
+        {
+          "flight_number": "TA 646",
+          "origin": "HYD",
+          "destination": "DOH",
+          "departs_in_days": 40,
+          "dep_time": "08:15",
+          "duration_min": 310
+        }
+      ],
+      "passengers": [
+        {
+          "type": "adult",
+          "first_name": "Nikhil",
+          "last_name": "Dummyram",
+          "extra_baggage_kg": 0
+        }
+      ],
+      "tags": [
+        "international",
+        "fare:TA-SAVE"
+      ],
+      "note": "",
+      "id": "TA028"
+    },
+    {
+      "pnr": "TZA4Y7",
+      "last_name": "Trialpur",
+      "status": "confirmed",
+      "fare_code": "TA-PLUS",
+      "cabin": "Economy",
+      "booked_via": "website",
+      "created_hours_ago": 240,
+      "segments": [
+        {
+          "flight_number": "TA 923",
+          "origin": "BOM",
+          "destination": "KTM",
+          "departs_in_days": 10,
+          "dep_time": "06:00",
+          "duration_min": 291
+        }
+      ],
+      "passengers": [
+        {
+          "type": "adult",
+          "first_name": "Dev",
+          "last_name": "Trialpur",
+          "extra_baggage_kg": 0
+        }
+      ],
+      "tags": [
+        "international",
+        "fare:TA-PLUS"
+      ],
+      "note": "",
+      "id": "TA029"
+    },
+    {
+      "pnr": "THV8C6",
+      "last_name": "Fakir",
+      "status": "confirmed",
+      "fare_code": "TA-BIZ",
+      "cabin": "Business",
+      "booked_via": "website",
+      "created_hours_ago": 240,
+      "segments": [
+        {
+          "flight_number": "TA 796",
+          "origin": "DEL",
+          "destination": "IST",
+          "departs_in_days": 10,
+          "dep_time": "21:15",
+          "duration_min": 466
+        }
+      ],
+      "passengers": [
+        {
+          "type": "adult",
+          "first_name": "Leela",
+          "last_name": "Fakir",
+          "extra_baggage_kg": 0
+        }
+      ],
+      "tags": [
+        "international",
+        "fare:TA-BIZ"
+      ],
+      "note": "",
+      "id": "TA030"
+    },
+    {
+      "pnr": "TP545T",
+      "last_name": "Fixturekar",
+      "status": "cancelled",
+      "fare_code": "TA-SAVE",
+      "cabin": "Economy",
+      "booked_via": "website",
+      "created_hours_ago": 240,
+      "segments": [
+        {
+          "flight_number": "TA 482",
+          "origin": "LKO",
+          "destination": "PNQ",
+          "departs_in_days": 14,
+          "dep_time": "14:15",
+          "duration_min": 86
+        }
+      ],
+      "passengers": [
+        {
+          "type": "adult",
+          "first_name": "Dev",
+          "last_name": "Fixturekar",
+          "extra_baggage_kg": 0
+        }
+      ],
+      "tags": [
+        "domestic",
+        "cancelled"
+      ],
+      "note": "",
+      "id": "TA031"
+    },
+    {
+      "pnr": "T24RFX",
+      "last_name": "Mockrao",
+      "status": "cancelled",
+      "fare_code": "TA-SAVE",
+      "cabin": "Economy",
+      "booked_via": "website",
+      "created_hours_ago": 240,
+      "segments": [
+        {
+          "flight_number": "TA 943",
+          "origin": "BOM",
+          "destination": "DXB",
+          "departs_in_days": 12,
+          "dep_time": "10:15",
+          "duration_min": 256
+        }
+      ],
+      "passengers": [
+        {
+          "type": "adult",
+          "first_name": "Sara",
+          "last_name": "Mockrao",
+          "extra_baggage_kg": 0
+        }
+      ],
+      "tags": [
+        "international",
+        "cancelled"
+      ],
+      "note": "",
+      "id": "TA032"
+    },
+    {
+      "pnr": "TA89EA",
+      "last_name": "Seedappa",
+      "status": "confirmed",
+      "fare_code": "TA-SAVE",
+      "cabin": "Economy",
+      "booked_via": "website",
+      "created_hours_ago": 20,
+      "segments": [
+        {
+          "flight_number": "TA 439",
+          "origin": "BOM",
+          "destination": "BLR",
+          "departs_in_days": 15,
+          "dep_time": "05:30",
+          "duration_min": 135
+        }
+      ],
+      "passengers": [
+        {
+          "type": "adult",
+          "first_name": "Leela",
+          "last_name": "Seedappa",
+          "extra_baggage_kg": 0
+        }
+      ],
+      "tags": [
+        "domestic",
+        "lookin:eligible"
+      ],
+      "note": "booked 20h ago on website, departs in 15 days",
+      "id": "TA033"
+    },
+    {
+      "pnr": "TR5L3J",
+      "last_name": "Stubbs",
+      "status": "confirmed",
+      "fare_code": "TA-FLEX",
+      "cabin": "Economy",
+      "booked_via": "website",
+      "created_hours_ago": 40,
+      "segments": [
+        {
+          "flight_number": "TA 665",
+          "origin": "JAI",
+          "destination": "MAA",
+          "departs_in_days": 30,
+          "dep_time": "19:00",
+          "duration_min": 86
+        }
+      ],
+      "passengers": [
+        {
+          "type": "adult",
+          "first_name": "Nikhil",
+          "last_name": "Stubbs",
+          "extra_baggage_kg": 0
+        }
+      ],
+      "tags": [
+        "domestic",
+        "lookin:eligible"
+      ],
+      "note": "booked 40h ago on website, departs in 30 days",
+      "id": "TA034"
+    },
+    {
+      "pnr": "TE897W",
+      "last_name": "Testwala",
+      "status": "confirmed",
+      "fare_code": "TA-SAVE",
+      "cabin": "Economy",
+      "booked_via": "travel_agent",
+      "created_hours_ago": 10,
+      "segments": [
+        {
+          "flight_number": "TA 717",
+          "origin": "JAI",
+          "destination": "AMD",
+          "departs_in_days": 20,
+          "dep_time": "06:45",
+          "duration_min": 80
+        }
+      ],
+      "passengers": [
+        {
+          "type": "adult",
+          "first_name": "Riya",
+          "last_name": "Testwala",
+          "extra_baggage_kg": 0
+        }
+      ],
+      "tags": [
+        "domestic",
+        "lookin:agent",
+        "booked_via_agent"
+      ],
+      "note": "booked 10h ago via agent",
+      "id": "TA035"
+    },
+    {
+      "pnr": "TJG637",
+      "last_name": "Demoji",
+      "status": "confirmed",
+      "fare_code": "TA-SAVE",
+      "cabin": "Economy",
+      "booked_via": "website",
+      "created_hours_ago": 5,
+      "segments": [
+        {
+          "flight_number": "TA 764",
+          "origin": "PNQ",
+          "destination": "COK",
+          "departs_in_days": 3,
+          "dep_time": "20:15",
+          "duration_min": 140
+        }
+      ],
+      "passengers": [
+        {
+          "type": "adult",
+          "first_name": "Kabir",
+          "last_name": "Demoji",
+          "extra_baggage_kg": 0
+        }
+      ],
+      "tags": [
+        "domestic",
+        "lookin:too_close"
+      ],
+      "note": "booked 5h ago, departs in 3 days",
+      "id": "TA036"
+    },
+    {
+      "pnr": "TX5YKL",
+      "last_name": "Examplay",
+      "status": "confirmed",
+      "fare_code": "TA-SAVE",
+      "cabin": "Economy",
+      "booked_via": "website",
+      "created_hours_ago": 60,
+      "segments": [
+        {
+          "flight_number": "TA 802",
+          "origin": "JAI",
+          "destination": "AMD",
+          "departs_in_days": 20,
+          "dep_time": "15:15",
+          "duration_min": 185
+        }
+      ],
+      "passengers": [
+        {
+          "type": "adult",
+          "first_name": "Arjun",
+          "last_name": "Examplay",
+          "extra_baggage_kg": 0
+        }
+      ],
+      "tags": [
+        "domestic",
+        "lookin:expired"
+      ],
+      "note": "booked 60h ago",
+      "id": "TA037"
+    },
+    {
+      "pnr": "TF47HM",
+      "last_name": "Fixturekar",
+      "status": "confirmed",
+      "fare_code": "TA-SAVE",
+      "cabin": "Economy",
+      "booked_via": "website",
+      "created_hours_ago": 12,
+      "segments": [
+        {
+          "flight_number": "TA 852",
+          "origin": "DEL",
+          "destination": "SIN",
+          "departs_in_days": 20,
+          "dep_time": "10:30",
+          "duration_min": 252
+        }
+      ],
+      "passengers": [
+        {
+          "type": "adult",
+          "first_name": "Neel",
+          "last_name": "Fixturekar",
+          "extra_baggage_kg": 0
+        }
+      ],
+      "tags": [
+        "international",
+        "lookin:eligible"
+      ],
+      "note": "intl, booked 12h ago, departs in 20 days",
+      "id": "TA038"
+    },
+    {
+      "pnr": "T7ANHL",
+      "last_name": "Examplay",
+      "status": "confirmed",
+      "fare_code": "TA-SAVE",
+      "cabin": "Economy",
+      "booked_via": "website",
+      "created_hours_ago": 12,
+      "segments": [
+        {
+          "flight_number": "TA 588",
+          "origin": "BOM",
+          "destination": "BKK",
+          "departs_in_days": 10,
+          "dep_time": "07:00",
+          "duration_min": 256
+        }
+      ],
+      "passengers": [
+        {
+          "type": "adult",
+          "first_name": "Ananya",
+          "last_name": "Examplay",
+          "extra_baggage_kg": 0
+        }
+      ],
+      "tags": [
+        "international",
+        "lookin:too_close"
+      ],
+      "note": "intl, booked 12h ago, departs in 10 days",
+      "id": "TA039"
+    },
+    {
+      "pnr": "TQCX3M",
+      "last_name": "Stubbs",
+      "status": "confirmed",
+      "fare_code": "TA-SAVE",
+      "cabin": "Economy",
+      "booked_via": "website",
+      "created_hours_ago": 47,
+      "segments": [
+        {
+          "flight_number": "TA 773",
+          "origin": "DEL",
+          "destination": "HYD",
+          "departs_in_days": 8,
+          "dep_time": "09:15",
+          "duration_min": 192
+        }
+      ],
+      "passengers": [
+        {
+          "type": "adult",
+          "first_name": "Leela",
+          "last_name": "Stubbs",
+          "extra_baggage_kg": 0
+        }
+      ],
+      "tags": [
+        "domestic",
+        "lookin:eligible",
+        "boundary"
+      ],
+      "note": "booked 47h ago, departs in 8 days",
+      "id": "TA040"
+    },
+    {
+      "pnr": "TD98NQ",
+      "last_name": "Fixturekar",
+      "status": "confirmed",
+      "fare_code": "TA-SAVE",
+      "cabin": "Economy",
+      "booked_via": "travel_agent",
+      "created_hours_ago": 240,
+      "segments": [
+        {
+          "flight_number": "TA 827",
+          "origin": "CCU",
+          "destination": "PNQ",
+          "departs_in_days": 30,
+          "dep_time": "10:30",
+          "duration_min": 160
+        }
+      ],
+      "passengers": [
+        {
+          "type": "adult",
+          "first_name": "Ananya",
+          "last_name": "Fixturekar",
+          "extra_baggage_kg": 0
+        }
+      ],
+      "tags": [
+        "domestic",
+        "booked_via_agent"
+      ],
+      "note": "",
+      "id": "TA041"
+    },
+    {
+      "pnr": "T3J9Q3",
+      "last_name": "Demoji",
+      "status": "confirmed",
+      "fare_code": "TA-SAVE",
+      "cabin": "Economy",
+      "booked_via": "travel_agent",
+      "created_hours_ago": 240,
+      "segments": [
+        {
+          "flight_number": "TA 902",
+          "origin": "HYD",
+          "destination": "MCT",
+          "departs_in_days": 14,
+          "dep_time": "17:30",
+          "duration_min": 553
+        }
+      ],
+      "passengers": [
+        {
+          "type": "adult",
+          "first_name": "Sara",
+          "last_name": "Demoji",
+          "extra_baggage_kg": 0
+        }
+      ],
+      "tags": [
+        "international",
+        "booked_via_agent"
+      ],
+      "note": "",
+      "id": "TA042"
+    },
+    {
+      "pnr": "TD6XL4",
+      "last_name": "Fakir",
+      "status": "confirmed",
+      "fare_code": "TA-FLEX",
+      "cabin": "Economy",
+      "booked_via": "travel_agent",
+      "created_hours_ago": 240,
+      "segments": [
+        {
+          "flight_number": "TA 242",
+          "origin": "AMD",
+          "destination": "GOI",
+          "departs_in_days": 21,
+          "dep_time": "12:45",
+          "duration_min": 85
+        }
+      ],
+      "passengers": [
+        {
+          "type": "adult",
+          "first_name": "Kavya",
+          "last_name": "Fakir",
+          "extra_baggage_kg": 0
+        }
+      ],
+      "tags": [
+        "domestic",
+        "booked_via_agent",
+        "fare:TA-FLEX"
+      ],
+      "note": "",
+      "id": "TA043"
+    },
+    {
+      "pnr": "TBCHH4",
+      "last_name": "Testwala",
+      "status": "confirmed",
+      "fare_code": "TA-SAVE",
+      "cabin": "Economy",
+      "booked_via": "website",
+      "created_hours_ago": 240,
+      "segments": [
+        {
+          "flight_number": "TA 564",
+          "origin": "BLR",
+          "destination": "JAI",
+          "departs_in_days": 1,
+          "dep_time": "11:15",
+          "duration_min": 93
+        }
+      ],
+      "passengers": [
+        {
+          "type": "adult",
+          "first_name": "Kavya",
+          "last_name": "Testwala",
+          "extra_baggage_kg": 0
+        }
+      ],
+      "tags": [
+        "domestic",
+        "checkin:open"
+      ],
+      "note": "departs in ~24h",
+      "id": "TA044"
+    },
+    {
+      "pnr": "TET4D3",
+      "last_name": "Dummyram",
+      "status": "confirmed",
+      "fare_code": "TA-SAVE",
+      "cabin": "Economy",
+      "booked_via": "website",
+      "created_hours_ago": 240,
+      "segments": [
+        {
+          "flight_number": "TA 663",
+          "origin": "DEL",
+          "destination": "DXB",
+          "departs_in_days": 2,
+          "dep_time": "19:00",
+          "duration_min": 289
+        }
+      ],
+      "passengers": [
+        {
+          "type": "adult",
+          "first_name": "Pooja",
+          "last_name": "Dummyram",
+          "extra_baggage_kg": 0
+        }
+      ],
+      "tags": [
+        "international",
+        "checkin:soon"
+      ],
+      "note": "intl departs in 2 days",
+      "id": "TA045"
+    }
+  ]
+}

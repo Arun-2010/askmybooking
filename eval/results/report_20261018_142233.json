@@ -1,0 +1,86 @@
+{
+  "run_at": "2026-10-18T08:51:24+00:00",
+  "model": "claude-opus-5-5",
+  "extraction": {
+    "website": {
+      "bookings": 45,
+      "field_accuracy": 1.0,
+      "failures": [],
+      "per_field": {
+        "pnr_masked": 1.0,
+        "airline": 1.0,
+        "booking_created_at": 1.0,
+        "status": 1.0,
+        "fare_type": 1.0,
+        "fare_category": 1.0,
+        "cabin": 1.0,
+        "flights": 1.0,
+        "passengers": 1.0,
+        "booked_via": 1.0
+      }
+    },
+    "eticket": {
+      "bookings": 45,
+      "field_accuracy": 1.0,
+      "failures": []
+    }
+  },
+  "source_failures": [
+    {
+      "switch": {
+        "captcha": "1"
+      },
+      "expected": "CaptchaRequired",
+      "got": "CaptchaRequired",
+      "pass": true,
+      "seconds": 1.1,
+      "why": "headless run must stop and ask for a human, never bypass"
+    },
+    {
+      "switch": {
+        "error": "500"
+      },
+      "expected": "SourceUnavailable",
+      "got": "SourceUnavailable",
+      "pass": true,
+      "seconds": 1.1,
+      "why": "server error surfaces as SourceUnavailable"
+    },
+    {
+      "switch": {
+        "layout": "v2"
+      },
+      "expected": "ok",
+      "got": "ok",
+      "pass": true,
+      "seconds": 1.0,
+      "why": "changed HTML still extracted via network capture"
+    },
+    {
+      "switch": {
+        "slow": "5"
+      },
+      "expected": "ok",
+      "got": "ok",
+      "pass": true,
+      "seconds": 6.7,
+      "why": "slow response tolerated"
+    },
+    {
+      "switch": {
+        "pnr": "unknown"
+      },
+      "expected": "BookingNotFound",
+      "got": "BookingNotFound",
+      "pass": true,
+      "seconds": 2.5,
+      "why": "unknown PNR reported as not found"
+    }
+  ],
+  "live_policy": {
+    "live_fetch_ok": 4,
+    "live_fetch_failed": 0,
+    "live_success_rate": 1.0,
+    "policy_changed_events": 0
+  }
+}

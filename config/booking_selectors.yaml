@@ -1,0 +1,62 @@
+# Page selectors and network patterns for browser-based booking sources.
+# Kept in config (not code) so layout changes are a config edit.
+
+testair:
+  manage_path: /manage
+  # Each list is tried in order; the first selector present on the page wins.
+  pnr_input: ["#pnr", "[data-qa=ref-input]", "input[name=pnr]"]
+  last_name_input: ["#last_name", "[data-qa=surname-input]", "input[name=last_name]"]
+  submit: ["#find-booking", "[data-qa=lookup-submit]", "form button[type=submit]"]
+  captcha_marker: ["#ta-captcha"]
+  # Network response that carries the booking JSON (preferred over DOM scraping)
+  booking_response_url_contains: /api/v1/bookings/lookup
+  # DOM fallback (layout v1 only)
+  dom:
+    root: "#booking-root"
+    not_found: ["#not-found", "[data-qa=no-trip]"]
+    pnr: "[data-field=pnr]"
+    status: "[data-field=status]"
+    created: "[data-field=created]"
+    channel: "[data-field=channel]"
+    fare_code: "[data-field=fare-code]"
+    cabin: "[data-field=cabin]"
+    segment: "li.segment"
+    passenger: "li.passenger"
+
+live_indigo:
+  # Verified 2026-10-18 from the site's own "Trips" menu links:
+  #   Trips > Edit Booking         -> /edit-booking.html  ("Retrieve Itinerary using PNR")
+  #   Trips > Find & view booking  -> /account/my-bookings.html
+  # Phase 0 finding: in an automation-launched browser the HTML loads but the CDN
+  # refuses the site's own JS bundles (ERR_HTTP2_PROTOCOL_ERROR on
+  # /etc.clientlibs/.../clientlib-site.min.js), so the PNR form never renders.
+  # Hence the default is assisted capture (LIVE_INDIGO_MODE=attach).
+  manage_url: https://www.goindigo.in/edit-booking.html
+  entry_link_text: ["Manage Booking", "View/Change", "Edit Booking", "Trips", "My Trips"]
+  # Cookie banner: only ever choose the essential-cookies option.
+  cookie_dismiss_text: ["Accept Essential Only"]
+  verified: false
+  # Form selectors below are only used by LIVE_INDIGO_MODE=auto and remain
+  # unverified (the form never rendered under automation).
+  pnr_input: ["input[name=pnr]", "input[placeholder*='PNR' i]", "input[aria-label*='PNR' i]"]
+  last_name_input: ["input[name=lastName]", "input[placeholder*='Last Name' i]", "input[placeholder*='Email' i]"]
+  submit: ["button:has-text('Get Itinerary')", "button:has-text('Retrieve')", "button[type=submit]"]
+  captcha_marker: ["iframe[src*=captcha]", "iframe[title*=challenge i]", "#px-captcha", ".g-recaptcha", "[class*=captcha i]"]
+  not_found_text: ["not found", "invalid", "does not match", "unable to retrieve", "please check"]
+  # Substrings of XHR/fetch URLs whose JSON body carries the booking.
+  booking_response_url_contains: ["booking", "itinerary", "retrieve"]
+  # Dotted paths into the captured JSON. Fill these from a REDACTED capture
+  # (scripts/capture_live_booking.py writes one to tests/fixtures/live/).
+  field_paths:
+    status: null
+    created_at: null
+    fare_type: null
+    cabin: null
+    segments: null          # list
+    seg_flight_number: null
+    seg_origin: null
+    seg_destination: null
+    seg_departure: null
+    passengers: null        # list
+    pax_type: null
+    pax_extra_baggage_kg: null

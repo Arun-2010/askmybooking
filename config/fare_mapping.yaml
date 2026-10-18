@@ -1,0 +1,26 @@
+# Maps the raw fare code printed on a booking to the policy fare category name
+# used on the airline's policy pages.
+#
+# TestAir is fictional. Its bookings are evaluated against IndiGo's real, live
+# policies ("fake bookings, real rules"), so each TestAir fare is mapped to the
+# IndiGo fare family with the closest product definition.
+
+testair:
+  TA-LITE: Lite          # cabin bag only, no free checked bag
+  TA-SAVE: Saver         # IndiGo's standard / regular fare
+  TA-FLEX: Flexi Plus    # reduced change/cancellation fees
+  TA-PLUS: Super 6E      # bundle: seat, meal, extra baggage
+  TA-BIZ: Stretch        # IndiGo's business-class product
+
+indigo:
+  # Raw values seen on IndiGo booking pages / e-tickets. Extend when a real
+  # booking shows a new value.
+  SAVER: Saver
+  REGULAR: Saver
+  RETAIL: Saver
+  LITE: Lite
+  FLEXI: Flexi Plus
+  FLEXI PLUS: Flexi Plus
+  SUPER 6E: Super 6E
+  STRETCH: Stretch
+  STRETCH+: Stretch Plus

@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block title %}My trips · TestAir{% endblock %}
+{% block content %}
+<section class="card trips-lookup">
+  <h2>Find your trip</h2>
+  <p class="muted">Redesigned page (layout v2): different field names and ids.</p>
+  <form class="lookup-v2" method="post" action="/manage">
+    <label>Reference</label>
+    <input type="text" name="pnr" data-qa="ref-input" placeholder="6-character code">
+    <label>Surname</label>
+    <input type="text" name="last_name" data-qa="surname-input" placeholder="As on ticket">
+    <input type="hidden" name="qs" value="{{ qs }}">
+    <button type="submit" data-qa="lookup-submit">Show trip</button>
+  </form>
+</section>
+{% endblock %}

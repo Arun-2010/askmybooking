@@ -1,0 +1,21 @@
+{
+  "checked_at": "2026-10-18T08:42:19+00:00",
+  "start_url": "https://www.goindigo.in/",
+  "steps": [
+    "homepage loaded",
+    "PNR form not found via entry links; update entry_link_text / pnr_input in config"
+  ],
+  "screenshot": "eval\\results\\feasibility.png",
+  "verdict": "FORM_NOT_FOUND",
+  "booking_like_responses": [],
+  "followup_2026_10_18": {
+    "verdict": "BLOCKED_FOR_AUTOMATION",
+    "manage_urls_verified": [
+      "https://www.goindigo.in/edit-booking.html",
+      "https://www.goindigo.in/account/my-bookings.html"
+    ],
+    "how_verified": "hrefs of the site's own Trips menu (Edit Booking, Find & view booking)",
+    "observation": "In automation-launched Chromium (headed, fresh profile) the HTML loads with HTTP 200, but the CDN fails the site's own JS/CSS/font bundles with net::ERR_HTTP2_PROTOCOL_ERROR (/etc.clientlibs/skyplus6ev2/clientlibs/clientlib-site.min.js etc.), so the PNR form never renders. A reused (persistent) profile was refused at the HTML level.",
+    "decision": "No stealth/fingerprint evasion. Live bookings use assisted capture: the user retrieves their own booking in their normal Chrome; the agent attaches over CDP and only reads booking JSON responses."
+  }
+}

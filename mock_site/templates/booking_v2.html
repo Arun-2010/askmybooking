@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block title %}Trip details · TestAir{% endblock %}
+{% block content %}
+<section class="card trip-v2"><div class="trip-body">Fetching trip…</div></section>
+<script>
+const LOOKUP = {{ lookup | safe }};
+const QS = {{ qs | tojson }};
+const body = document.querySelector('.trip-body');
+function esc(s){ return String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
+fetch('/api/v1/bookings/lookup' + (QS ? '?' + QS : ''), {
+  method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify(LOOKUP)
+}).then(async r => {
+  const data = await r.json().catch(() => ({}));
+  if (r.status === 404) { body.innerHTML = '<div class="alert-v2" data-qa="no-trip">' + esc(data.message || 'Not found') + '</div>'; return; }
+  if (!r.ok) { body.innerHTML = '<div class="alert-v2" data-qa="trip-error">Trip unavailable.</div>'; return; }
+  const segs = data.journeys.flatMap(j => j.segments);
+  body.innerHTML = `<table class="itin-v2"><tr><th>Ref</th><td>${esc(data.bookingRef)}</td></tr>
+    <tr><th>State</th><td>${esc(data.status)}</td></tr><tr><th>Product</th><td>${esc(data.fare.name)} / ${esc(data.fare.cabin)}</td></tr></table>
+    <table class="legs-v2">${segs.map(s => `<tr><td>${esc(s.flightNo)}</td><td>${esc(s.from.code)}-${esc(s.to.code)}</td><td>${esc(s.departureLocal)}</td></tr>`).join('')}</table>
+    <div class="pax-count">${data.passengers.length} traveller(s)</div>`;
+});
+</script>
+{% endblock %}

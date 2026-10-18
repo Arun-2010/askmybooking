@@ -1,0 +1,347 @@
+# Evaluation cases: TestAir (fictional) bookings x IndiGo's real policy pages.
+#
+# Expected answers were written by reading the PINNED snapshots in
+# eval/fixtures/snapshots.json (fetched live 2026-10-18). The eval runner feeds
+# the agent those same snapshots, so expected answers stay valid even after the
+# live pages change.
+#
+# Fields
+#   booking:         seed id in mock_site/seed_bookings.json
+#   topic:           policy topic the agent should fetch
+#   expected_answer: reference answer (for the LLM judge)
+#   must_include:    list of groups; every group must match (any alternative in a group), case-insensitive
+#   expect_could_not_confirm: true / false / null (null = either is acceptable)
+#   switches:        mock-site failure switches for this case
+#   policy_mode:     pinned (default) | unavailable
+
+snapshots:
+  baggage: [snap_20261018083916_7992ff99]
+  cancellation: [snap_20261018084002_30fc34f2]
+  web_checkin: [snap_20261018084043_375e9aa8, snap_20261018084122_99a5d88e]
+
+cases:
+  # ---------------- baggage ----------------
+  - id: B01
+    booking: TA002
+    topic: baggage
+    question: How much check-in baggage can I take?
+    expected_answer: Domestic flight, so 15 kg check-in baggage per person. Hand baggage one bag up to 7 kg (115 cm) plus one personal article up to 3 kg.
+    must_include: [["15"]]
+    expect_could_not_confirm: false
+  - id: B02
+    booking: TA011
+    topic: baggage
+    question: What is my total check-in baggage allowance?
+    expected_answer: 15 kg free domestic allowance plus the 5 kg extra baggage already bought = 20 kg.
+    must_include: [["20"]]
+    expect_could_not_confirm: false
+  - id: B03
+    booking: TA014
+    topic: baggage
+    question: How many kilos can I check in in total?
+    expected_answer: 15 kg free + 20 kg pre-purchased extra = 35 kg.
+    must_include: [["35"]]
+    expect_could_not_confirm: false
+  - id: B04
+    booking: TA016
+    topic: baggage
+    question: What baggage can I bring for my baby?
+    expected_answer: The infant has no (NIL) check-in baggage allowance; one hand bag up to 7 kg / 115 cm is allowed, and one stroller or pram per infant is carried free.
+    must_include: [["nil", "no check-in", "no checked", "not have", "0 kg", "zero"], ["stroller", "pram"]]
+    expect_could_not_confirm: false
+  - id: B05
+    booking: TA020
+    topic: baggage
+    question: How much check-in baggage do my infant and I get to Dubai?
+    expected_answer: Adult 30 kg (Dubai sector). Infant check-in baggage NIL; infant hand bag up to 7 kg; one stroller free.
+    must_include: [["30"], ["nil", "no check-in", "no checked", "0 kg", "zero", "not"]]
+    expect_could_not_confirm: false
+  - id: B06
+    booking: TA025
+    topic: baggage
+    question: What is my free check-in baggage?
+    expected_answer: Hyderabad to Dubai is listed with a 30 kg allowance per person.
+    must_include: [["30"]]
+    expect_could_not_confirm: false
+  - id: B07
+    booking: TA026
+    topic: baggage
+    question: How much luggage can I check in?
+    expected_answer: Mumbai to Singapore - Singapore is in the 30 kg per person group.
+    must_include: [["30"]]
+    expect_could_not_confirm: false
+  - id: B08
+    booking: TA027
+    topic: baggage
+    question: What's my checked baggage allowance?
+    expected_answer: Bangkok is listed with 20 kg per person.
+    must_include: [["20"]]
+    expect_could_not_confirm: false
+  - id: B09
+    booking: TA029
+    topic: baggage
+    question: How much check-in baggage do I have?
+    expected_answer: Kathmandu is listed at 20 kg per person. The page does not say whether the Super 6E fare adds extra baggage, so any fare-bundle extra can't be confirmed.
+    must_include: [["20"]]
+    expect_could_not_confirm: null
+  - id: B10
+    booking: TA030
+    topic: baggage
+    question: What's my baggage allowance in business?
+    expected_answer: The Istanbul sector is listed at 30 kg per person; the page has no Stretch/business-specific allowance, so a business-class allowance can't be confirmed from it.
+    must_include: [["30", "could not", "couldn't", "not able", "unable", "doesn't", "does not"]]
+    expect_could_not_confirm: null
+  - id: B11
+    booking: TA001
+    topic: baggage
+    question: Can I take a check-in bag?
+    expected_answer: The fare is a Lite (cabin-bag-only style) fare; the baggage page lists 15 kg domestic but does not cover Lite fares, so whether a free check-in bag is included can't be confirmed. Check the official page.
+    must_include: [["lite", "fare"]]
+    expect_could_not_confirm: true
+  - id: B12
+    booking: TA024
+    topic: baggage
+    question: How much check-in baggage for my trip to London?
+    expected_answer: London is not in the page's sector list (only codeshare groups and Manchester/Amsterdam). The page says the international allowance applies across domestic-international connections on a single PNR, but the London figure itself can't be confirmed.
+    must_include: [["london", "lhr"]]
+    expect_could_not_confirm: true
+  - id: B13
+    booking: TA019
+    topic: baggage
+    question: What's the check-in baggage for each of us?
+    expected_answer: Domestic 15 kg per person for each of the two adults and two children; the first adult also bought 10 kg extra, so 25 kg for that adult.
+    must_include: [["15"], ["25"]]
+    expect_could_not_confirm: false
+  - id: B14
+    booking: TA021
+    topic: baggage
+    question: I have a connecting flight. How much can I check in?
+    expected_answer: Both legs are domestic; 15 kg per person.
+    must_include: [["15"]]
+    expect_could_not_confirm: false
+  - id: B15
+    booking: TA009
+    topic: baggage
+    question: How much check-in baggage does my business fare include?
+    expected_answer: The page lists 15 kg for domestic but says nothing about Stretch/business fares, so the business allowance can't be confirmed.
+    must_include: []
+    expect_could_not_confirm: true
+  - id: B16
+    booking: TA031
+    topic: baggage
+    question: How much baggage can I take?
+    expected_answer: The booking is cancelled. (For reference the domestic allowance is 15 kg per person.)
+    must_include: [["cancel"]]
+    expect_could_not_confirm: null
+  - id: B17
+    booking: TA003
+    topic: baggage
+    question: Can I carry a laptop bag along with my cabin bag?
+    expected_answer: Yes - one hand bag up to 7 kg (115 cm L+W+H) plus one personal article such as a small laptop bag up to 3 kg.
+    must_include: [["3"], ["7"]]
+    expect_could_not_confirm: false
+
+  # ---------------- cancellation / change ----------------
+  - id: C01
+    booking: TA033
+    topic: cancellation
+    question: Can I cancel my booking for free?
+    expected_answer: Yes. Booked about 20 hours ago on the website and departing about 15 days out (domestic, more than 7 days), so the 48-hour Look-in applies - cancel without a cancellation fee within the 48 hours (about 28 hours left).
+    must_include: [["48", "look-in"]]
+    expect_could_not_confirm: false
+  - id: C02
+    booking: TA034
+    topic: cancellation
+    question: Is there still time to cancel without a fee?
+    expected_answer: Yes, but only about 8 hours left - booked ~40 hours ago on the website, domestic departure 30 days away, so the 48-hour Look-in still applies.
+    must_include: [["48", "look-in"]]
+    expect_could_not_confirm: false
+  - id: C03
+    booking: TA035
+    topic: cancellation
+    question: I booked 10 hours ago. Can I cancel without paying a fee?
+    expected_answer: No - the Look-in applies only to tickets booked directly on IndiGo's website; this booking was made via an agent. The actual fee isn't on the fetched page, so it can't be confirmed.
+    must_include: [["website", "directly", "agent"]]
+    expect_could_not_confirm: null
+  - id: C04
+    booking: TA036
+    topic: cancellation
+    question: I just booked a few hours ago. Can I cancel free of charge?
+    expected_answer: No - although booked 5 hours ago on the website, the domestic departure is within 7 days of booking, so the Look-in is not available.
+    must_include: [["7", "seven"]]
+    expect_could_not_confirm: null
+  - id: C05
+    booking: TA037
+    topic: cancellation
+    question: Can I still cancel for free?
+    expected_answer: No - the booking was made about 60 hours ago, so the 48-hour Look-in window has passed.
+    must_include: [["48"]]
+    expect_could_not_confirm: null
+  - id: C06
+    booking: TA038
+    topic: cancellation
+    question: Can I cancel without any fee?
+    expected_answer: Yes - booked ~12 hours ago on the website and the international departure is ~20 days away (more than 15 days), so the 48-hour Look-in applies; about 36 hours left.
+    must_include: [["48", "look-in"]]
+    expect_could_not_confirm: false
+  - id: C07
+    booking: TA039
+    topic: cancellation
+    question: Can I cancel free since I booked only this morning?
+    expected_answer: No - for international flights the Look-in is not available when departure is within 15 days of booking; this departs in about 10 days.
+    must_include: [["15", "fifteen"]]
+    expect_could_not_confirm: null
+  - id: C08
+    booking: TA040
+    topic: cancellation
+    question: Can I make a free cancellation?
+    expected_answer: Yes, just - booked ~47 hours ago on the website, domestic departure ~10 days after booking, so the Look-in still applies, but only about 1 hour remains.
+    must_include: [["hour"]]
+    expect_could_not_confirm: false
+  - id: C09
+    booking: TA002
+    topic: cancellation
+    question: What is the cancellation fee for my ticket?
+    expected_answer: The fetched page doesn't list IndiGo's own domestic cancellation fees (it links out to them; the tables shown are for codeshare flights). The Look-in doesn't apply (booked ~10 days ago). Fee can't be confirmed - check the official page.
+    must_include: []
+    expect_could_not_confirm: true
+  - id: C10
+    booking: TA030
+    topic: cancellation
+    question: How much will it cost to change my flight to Istanbul?
+    expected_answer: The only Stretch change-fee tables on the page are for codeshare bookings, and Istanbul isn't mapped to a zone there, so the change fee can't be confirmed.
+    must_include: []
+    expect_could_not_confirm: true
+  - id: C11
+    booking: TA032
+    topic: cancellation
+    question: I want to cancel my flight. What do I need to do?
+    expected_answer: The booking is already cancelled.
+    must_include: [["already cancel", "is cancelled", "has been cancelled", "status is cancelled", "cancelled booking", "shows as cancelled", "marked as cancelled"]]
+    expect_could_not_confirm: null
+  - id: C12
+    booking: TA028
+    topic: cancellation
+    question: Until when can I change or cancel my international flight?
+    expected_answer: For an international flight, change and cancellation can be done up to 4 hours before scheduled departure; no-show charges apply 0-4 hours before departure.
+    must_include: [["4 hours", "4 hrs", "four hours"]]
+    expect_could_not_confirm: false
+  - id: C13
+    booking: TA033
+    topic: cancellation
+    question: I want to move my flight to another date. What will I have to pay?
+    expected_answer: Within the 48-hour Look-in (booked ~20 h ago on the website, departure 15 days out) there is no change fee, but any fare difference between the old and new booking is payable.
+    must_include: [["fare difference", "difference in fare"]]
+    expect_could_not_confirm: false
+
+  # ---------------- web check-in ----------------
+  - id: W01
+    booking: TA002
+    topic: web_checkin
+    question: When can I do web check-in?
+    expected_answer: Domestic flight - web check-in is open from 48 hours until 60 minutes before departure.
+    must_include: [["48"], ["60"]]
+    expect_could_not_confirm: false
+  - id: W02
+    booking: TA025
+    topic: web_checkin
+    question: When does web check-in open for my flight?
+    expected_answer: International flight - web check-in from 24 hours to 75 minutes before departure.
+    must_include: [["24"], ["75"]]
+    expect_could_not_confirm: false
+  - id: W03
+    booking: TA044
+    topic: web_checkin
+    question: Can I check in online right now?
+    expected_answer: Yes - it's a domestic flight departing within the next 48 hours, and web check-in is open from 48 hours to 60 minutes before departure.
+    must_include: [["48"]]
+    expect_could_not_confirm: false
+  - id: W04
+    booking: TA045
+    topic: web_checkin
+    question: Can I web check-in now?
+    expected_answer: Not yet - it's an international flight departing in about 2 days; web check-in opens 24 hours before departure (closes 75 minutes before).
+    must_include: [["24"]]
+    expect_could_not_confirm: false
+  - id: W05
+    booking: TA021
+    topic: web_checkin
+    question: Can I web check-in for both of my connecting flights?
+    expected_answer: Both legs are domestic and on the same day, so web check-in is available from 48 hours to 60 minutes before departure. (Connections departing beyond the 48-hour window aren't eligible, which doesn't apply here.)
+    must_include: [["48"]]
+    expect_could_not_confirm: null
+  - id: W06
+    booking: TA024
+    topic: web_checkin
+    question: When can I web check-in for my trip to London?
+    expected_answer: The first leg is domestic (48 h to 60 min), the London leg is international (24 h to 75 min). The exact combined rule for a domestic-to-international connection isn't stated.
+    must_include: [["24", "48"]]
+    expect_could_not_confirm: null
+  - id: W07
+    booking: TA016
+    topic: web_checkin
+    question: When do airport check-in counters close for my flight?
+    expected_answer: Domestic - airport counters close 60 minutes before departure.
+    must_include: [["60"]]
+    expect_could_not_confirm: false
+  - id: W08
+    booking: TA042
+    topic: web_checkin
+    question: What time do check-in counters close for my flight to Muscat?
+    expected_answer: International - counters close 75 minutes before departure.
+    must_include: [["75"]]
+    expect_could_not_confirm: false
+  - id: W09
+    booking: TA031
+    topic: web_checkin
+    question: When can I check in?
+    expected_answer: The booking is cancelled, so there is nothing to check in for.
+    must_include: [["cancel"]]
+    expect_could_not_confirm: null
+
+  # ---------------- failure handling (end-to-end) ----------------
+  - id: F01
+    booking: TA002
+    topic: baggage
+    question: How much check-in baggage can I take?
+    switches: {error: "500"}
+    expected_answer: The booking couldn't be read (website error). May give the generic domestic figure only if clearly labelled as generic; must say it's not confirmed for this booking.
+    must_include: []
+    expect_could_not_confirm: true
+    tags: [failure]
+  - id: F02
+    booking: TA002
+    topic: baggage
+    question: How much check-in baggage can I take?
+    switches: {captcha: "1"}
+    expected_answer: The booking couldn't be read because the site asked for human verification; says so and does not claim a booking-specific answer.
+    must_include: [["verif", "captcha", "human", "security check"]]
+    expect_could_not_confirm: true
+    tags: [failure]
+  - id: F03
+    booking: TA002
+    topic: baggage
+    question: How much check-in baggage can I take?
+    switches: {layout: "v2"}
+    expected_answer: Same as B01 - 15 kg per person (domestic).
+    must_include: [["15"]]
+    expect_could_not_confirm: false
+    tags: [failure]
+  - id: F04
+    booking: TA025
+    topic: baggage
+    question: How much check-in baggage can I take?
+    switches: {slow: "3"}
+    expected_answer: Same as B06 - 30 kg.
+    must_include: [["30"]]
+    expect_could_not_confirm: false
+    tags: [failure]
+  - id: F05
+    booking: TA002
+    topic: baggage
+    question: How much check-in baggage can I take?
+    policy_mode: unavailable
+    expected_answer: Policy page could not be fetched and no cached copy exists; the agent says it can't confirm and gives the official URL, without answering from memory.
+    must_include: []
+    expect_could_not_confirm: true
+    tags: [failure]

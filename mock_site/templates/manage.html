@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block title %}Manage booking · TestAir{% endblock %}
+{% block content %}
+<div class="card">
+  <h2>Manage booking</h2>
+  <form id="manage-form" method="post" action="/manage">
+    <label for="pnr">Booking reference (PNR)</label>
+    <input type="text" id="pnr" name="pnr" maxlength="6" autocomplete="off">
+    <label for="last_name">Last name</label>
+    <input type="text" id="last_name" name="last_name" autocomplete="off">
+    <input type="hidden" name="qs" value="{{ qs }}">
+    <button type="submit" id="find-booking">Find my booking</button>
+  </form>
+</div>
+{% endblock %}

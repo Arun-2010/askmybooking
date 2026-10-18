@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block title %}Security check · TestAir{% endblock %}
+{% block content %}
+<div class="card" id="ta-captcha">
+  <h2>Quick security check</h2>
+  <p>Please confirm you are a person before managing your booking.</p>
+  <form method="post" action="/captcha/verify">
+    <label style="display:flex;gap:8px;align-items:center;font-size:16px;color:inherit">
+      <input type="checkbox" name="human" value="yes" id="captcha-checkbox"> I am not a robot
+    </label>
+    <input type="hidden" name="qs" value="{{ qs }}">
+    <button type="submit" id="captcha-continue">Continue</button>
+  </form>
+</div>
+{% endblock %}
