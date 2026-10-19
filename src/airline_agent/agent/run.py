@@ -16,6 +16,7 @@ from typing import Any, Callable
 import anthropic
 
 from airline_agent import config
+from airline_agent.agent.applicability import unconfirmed_reasons
 from airline_agent.agent.evidence import lower, validate_evidence
 from airline_agent.agent.prompts import ANSWER_SCHEMA, SYSTEM_PROMPT
 from airline_agent.agent.tools import TOOL_DEFS, ToolContext, execute_tool
@@ -182,6 +183,17 @@ def finalize(output: dict[str, Any] | None, ctx: ToolContext, note: str | None =
         confidence = "low"
         answer_text += ("\n\nNote: I could not verify this against the airline's page text, so please treat it "
                         "as unconfirmed.")
+
+    # Rule 3 in code: if the page doesn't cover this booking, the answer can't be confirmed,
+    # however confident the AI was.
+    if ctx.booking is not None and not could_not_confirm:
+        reasons = unconfirmed_reasons(ctx.booking, list(snaps.values()), ctx.policy_airline, answer=answer_text)
+        if reasons:
+            # Replace, don't prefix: a confident figure under "couldn't confirm" reads as a contradiction.
+            could_not_confirm = True
+            confidence = "low"
+            answer_text = ("I couldn't confirm this for your booking: " + "; ".join(reasons) + ". "
+                           "Rather than guess, please check the official page below or contact the airline.")
 
     used = list({s.snapshot_id: s for _, s in verified}.values())
     if not used:

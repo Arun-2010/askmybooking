@@ -1,0 +1,1398 @@
+{
+  "run_at": "2026-10-19T06:01:49+00:00",
+  "model": "gemini:gemini-3.5-flash-lite",
+  "extraction": {
+    "website": {
+      "bookings": 45,
+      "field_accuracy": 1.0,
+      "failures": [],
+      "per_field": {
+        "pnr_masked": 1.0,
+        "airline": 1.0,
+        "booking_created_at": 1.0,
+        "status": 1.0,
+        "fare_type": 1.0,
+        "fare_category": 1.0,
+        "cabin": 1.0,
+        "flights": 1.0,
+        "passengers": 1.0,
+        "booked_via": 1.0
+      }
+    },
+    "eticket": {
+      "bookings": 45,
+      "field_accuracy": 1.0,
+      "failures": []
+    }
+  },
+  "source_failures": [
+    {
+      "switch": {
+        "captcha": "1"
+      },
+      "expected": "CaptchaRequired",
+      "got": "CaptchaRequired",
+      "pass": true,
+      "seconds": 1.1,
+      "why": "headless run must stop and ask for a human, never bypass"
+    },
+    {
+      "switch": {
+        "error": "500"
+      },
+      "expected": "SourceUnavailable",
+      "got": "SourceUnavailable",
+      "pass": true,
+      "seconds": 1.1,
+      "why": "server error surfaces as SourceUnavailable"
+    },
+    {
+      "switch": {
+        "layout": "v2"
+      },
+      "expected": "ok",
+      "got": "ok",
+      "pass": true,
+      "seconds": 1.0,
+      "why": "changed HTML still extracted via network capture"
+    },
+    {
+      "switch": {
+        "slow": "5"
+      },
+      "expected": "ok",
+      "got": "ok",
+      "pass": true,
+      "seconds": 6.7,
+      "why": "slow response tolerated"
+    },
+    {
+      "switch": {
+        "pnr": "unknown"
+      },
+      "expected": "BookingNotFound",
+      "got": "BookingNotFound",
+      "pass": true,
+      "seconds": 2.5,
+      "why": "unknown PNR reported as not found"
+    }
+  ],
+  "live_policy": {
+    "live_fetch_ok": 5,
+    "live_fetch_failed": 0,
+    "live_success_rate": 1.0,
+    "policy_changed_events": 0
+  },
+  "answers": {
+    "cases": 44,
+    "scored": 44,
+    "not_scored_ai_errors": 0,
+    "answer_accuracy": 0.8636363636363636,
+    "accuracy_by_group": {
+      "baggage": 0.9411764705882353,
+      "cancellation": 0.8461538461538461,
+      "web_checkin": 0.6666666666666666,
+      "failure": 1.0
+    },
+    "judge_accuracy": 0.8636363636363636,
+    "must_include_rate": 1.0,
+    "could_not_confirm_correct": 1.0,
+    "policy_retrieval_accuracy": 1.0,
+    "groundedness": 0.958904109589041,
+    "answers_with_verified_evidence": 0.9545454545454546,
+    "latency_p50_s": 15.4,
+    "latency_p95_s": 45.42,
+    "tokens_in": 351965,
+    "tokens_out": 19299,
+    "approx_cost_usd": null,
+    "rows": [
+      {
+        "id": "B01",
+        "topic": "baggage",
+        "tags": [],
+        "answer": "For your domestic flight from BOM to BLR on TestAir, your free check-in baggage allowance is 15 kg for your adult passenger.\n\nBooking read from: TestAir website (test airline). Policy fetched live at 18 Oct 2026 08:39 UTC.",
+        "confidence": "high",
+        "could_not_confirm": false,
+        "topics_fetched": [
+          "baggage"
+        ],
+        "retrieval_ok": true,
+        "verified_quotes": 1,
+        "dropped_quotes": 0,
+        "includes_ok": true,
+        "cnc_expected": false,
+        "latency_s": 8.59,
+        "usage": {
+          "input_tokens": 5026,
+          "output_tokens": 241,
+          "cache_read_input_tokens": 0
+        },
+        "booking_error": null,
+        "infra_error": false,
+        "cnc_ok": true,
+        "judge_correct": true,
+        "judge_reason": "The actual answer correctly identifies the 15 kg check-in baggage allowance for the domestic flight. While it does not mention the hand baggage allowance, it does not provide incorrect information, and the check-in baggage figure matches the reference.",
+        "judge_model": "gemini-3.1-flash-lite",
+        "correct": true
+      },
+      {
+        "id": "B02",
+        "topic": "baggage",
+        "tags": [],
+        "answer": "Your total check-in baggage allowance is 20 kg. This includes the standard domestic allowance of 15 kg per person plus the 5 kg of extra baggage you purchased.\n\nBooking read from: TestAir website (test airline). Policy fetched live at 18 Oct 2026 08:39 UTC.",
+        "confidence": "high",
+        "could_not_confirm": false,
+        "topics_fetched": [
+          "baggage"
+        ],
+        "retrieval_ok": true,
+        "verified_quotes": 1,
+        "dropped_quotes": 0,
+        "includes_ok": true,
+        "cnc_expected": false,
+        "latency_s": 9.58,
+        "usage": {
+          "input_tokens": 5027,
+          "output_tokens": 297,
+          "cache_read_input_tokens": 0
+        },
+        "booking_error": null,
+        "infra_error": false,
+        "cnc_ok": true,
+        "judge_correct": true,
+        "judge_reason": "The actual answer reaches the same conclusion and includes the correct breakdown of the baggage allowance (15 kg domestic + 5 kg extra = 20 kg total).",
+        "judge_model": "gemini-3.1-flash-lite",
+        "correct": true
+      },
+      {
+        "id": "B03",
+        "topic": "baggage",
+        "tags": [],
+        "answer": "Your flight from BLR to AMD is domestic and in Economy class, which includes a free check-in baggage allowance of 15 kg per person. Since you have also purchased an extra 20 kg of baggage, your total check-in baggage allowance is 35 kg.\n\nBooking read from: TestAir website (test airline). Policy fetched live at 18 Oct 2026 08:39 UTC.",
+        "confidence": "high",
+        "could_not_confirm": false,
+        "topics_fetched": [
+          "baggage"
+        ],
+        "retrieval_ok": true,
+        "verified_quotes": 1,
+        "dropped_quotes": 0,
+        "includes_ok": true,
+        "cnc_expected": false,
+        "latency_s": 9.76,
+        "usage": {
+          "input_tokens": 5024,
+          "output_tokens": 326,
+          "cache_read_input_tokens": 0
+        },
+        "booking_error": null,
+        "infra_error": false,
+        "cnc_ok": true,
+        "judge_correct": true,
+        "judge_reason": "The actual answer correctly identifies both the free allowance and the pre-purchased weight, correctly summing them to 35 kg.",
+        "judge_model": "gemini-3.1-flash-lite",
+        "correct": true
+      },
+      {
+        "id": "B04",
+        "topic": "baggage",
+        "tags": [],
+        "answer": "For your baby on this domestic flight, the baggage allowance is:\n\n- Hand Baggage: One hand bag up to 7 kgs and 115 cms (L+W+H).\n- Check-in Baggage: NIL.\n- Stroller/Pram: One stroller or baby pram per infant is allowed without any charge.\n\nBooking read from: TestAir website (test airline). Policy fetched live at 18 Oct 2026 08:39 UTC.",
+        "confidence": "high",
+        "could_not_confirm": false,
+        "topics_fetched": [
+          "baggage"
+        ],
+        "retrieval_ok": true,
+        "verified_quotes": 2,
+        "dropped_quotes": 0,
+        "includes_ok": true,
+        "cnc_expected": false,
+        "latency_s": 11.44,
+        "usage": {
+          "input_tokens": 5052,
+          "output_tokens": 401,
+          "cache_read_input_tokens": 0
+        },
+        "booking_error": null,
+        "infra_error": false,
+        "cnc_ok": true,
+        "judge_correct": true,
+        "judge_reason": "The actual answer correctly includes all baggage specifications (7 kg, 115 cm, NIL check-in, and one stroller/pram) as stated in the reference.",
+        "judge_model": "gemini-3.1-flash-lite",
+        "correct": true
+      },
+      {
+        "id": "B05",
+        "topic": "baggage",
+        "tags": [],
+        "answer": "For your flight from DEL to DXB, your check-in baggage allowance is 30 kg for the adult passenger. For the infant, the check-in baggage allowance is NIL, but one stroller or baby pram per infant is allowed free of charge.\n\nBooking read from: TestAir website (test airline). Policy fetched live at 18 Oct 2026 08:39 UTC.",
+        "confidence": "medium",
+        "could_not_confirm": false,
+        "topics_fetched": [
+          "baggage"
+        ],
+        "retrieval_ok": true,
+        "verified_quotes": 1,
+        "dropped_quotes": 1,
+        "includes_ok": true,
+        "cnc_expected": false,
+        "latency_s": 15.34,
+        "usage": {
+          "input_tokens": 5063,
+          "output_tokens": 424,
+          "cache_read_input_tokens": 0
+        },
+        "booking_error": null,
+        "infra_error": false,
+        "cnc_ok": true,
+        "judge_correct": true,
+        "judge_reason": "The actual answer correctly identifies the 30 kg baggage allowance for the adult and the NIL allowance for the infant, while also correctly mentioning the free stroller, matching the reference information.",
+        "judge_model": "gemini-3.1-flash-lite",
+        "correct": true
+      },
+      {
+        "id": "B06",
+        "topic": "baggage",
+        "tags": [],
+        "answer": "Your free check-in baggage allowance for your flight from HYD to DXB is 30kg per person.\n\nBooking read from: TestAir website (test airline). Policy fetched live at 18 Oct 2026 08:39 UTC.",
+        "confidence": "high",
+        "could_not_confirm": false,
+        "topics_fetched": [
+          "baggage"
+        ],
+        "retrieval_ok": true,
+        "verified_quotes": 1,
+        "dropped_quotes": 0,
+        "includes_ok": true,
+        "cnc_expected": false,
+        "latency_s": 14.8,
+        "usage": {
+          "input_tokens": 5022,
+          "output_tokens": 316,
+          "cache_read_input_tokens": 0
+        },
+        "booking_error": null,
+        "infra_error": false,
+        "cnc_ok": true,
+        "judge_correct": true,
+        "judge_reason": "The actual answer correctly identifies the 30kg baggage allowance and correctly maps the airport codes HYD and DXB to the route mentioned in the reference.",
+        "judge_model": "gemini-3.1-flash-lite",
+        "correct": true
+      },
+      {
+        "id": "B07",
+        "topic": "baggage",
+        "tags": [],
+        "answer": "For your flight from BOM to SIN, your free check-in baggage allowance is 30kg for your adult ticket in Economy class.\n\nBooking read from: TestAir website (test airline). Policy fetched live at 18 Oct 2026 08:39 UTC.",
+        "confidence": "high",
+        "could_not_confirm": false,
+        "topics_fetched": [
+          "baggage"
+        ],
+        "retrieval_ok": true,
+        "verified_quotes": 1,
+        "dropped_quotes": 0,
+        "includes_ok": true,
+        "cnc_expected": false,
+        "latency_s": 15.47,
+        "usage": {
+          "input_tokens": 5022,
+          "output_tokens": 293,
+          "cache_read_input_tokens": 0
+        },
+        "booking_error": null,
+        "infra_error": false,
+        "cnc_ok": true,
+        "judge_correct": true,
+        "judge_reason": "The actual answer correctly identifies the 30kg allowance for the Mumbai to Singapore route, matching the reference.",
+        "judge_model": "gemini-3.1-flash-lite",
+        "correct": true
+      },
+      {
+        "id": "B08",
+        "topic": "baggage",
+        "tags": [],
+        "answer": "Your checked baggage allowance for your flight from BLR to BKK is 20 kg per person.\n\nAdditionally, your hand baggage allowance is one handbag up to 7 kg (115 cm L+W+H) plus one personal article (such as a ladies\u2019 purse or a small laptop bag) weighing no more than 3 kg.\n\nBooking read from: TestAir website (test airline). Policy fetched live at 18 Oct 2026 08:39 UTC.",
+        "confidence": "high",
+        "could_not_confirm": false,
+        "topics_fetched": [
+          "baggage"
+        ],
+        "retrieval_ok": true,
+        "verified_quotes": 2,
+        "dropped_quotes": 0,
+        "includes_ok": true,
+        "cnc_expected": false,
+        "latency_s": 15.39,
+        "usage": {
+          "input_tokens": 5027,
+          "output_tokens": 378,
+          "cache_read_input_tokens": 0
+        },
+        "booking_error": null,
+        "infra_error": false,
+        "cnc_ok": true,
+        "judge_correct": true,
+        "judge_reason": "The actual answer correctly identifies the checked baggage allowance as 20 kg per person and includes additional helpful information about hand baggage.",
+        "judge_model": "gemini-3.1-flash-lite",
+        "correct": true
+      },
+      {
+        "id": "B09",
+        "topic": "baggage",
+        "tags": [],
+        "answer": "I couldn't confirm this for your booking: the airline's baggage page doesn't mention the Super 6E fare, so the general allowance may not apply to your ticket. Rather than guess, please check the official page below or contact the airline.\n\nPlease check the official page: https://www.goindigo.in/baggage/baggage-allowance.html\n\nBooking read from: TestAir website (test airline). Policy fetched live at 18 Oct 2026 08:39 UTC.",
+        "confidence": "low",
+        "could_not_confirm": true,
+        "topics_fetched": [
+          "baggage"
+        ],
+        "retrieval_ok": true,
+        "verified_quotes": 1,
+        "dropped_quotes": 0,
+        "includes_ok": true,
+        "cnc_expected": null,
+        "latency_s": 14.08,
+        "usage": {
+          "input_tokens": 5026,
+          "output_tokens": 249,
+          "cache_read_input_tokens": 0
+        },
+        "booking_error": null,
+        "infra_error": false,
+        "cnc_ok": true,
+        "judge_correct": false,
+        "judge_reason": "The actual answer fails to state the base baggage allowance of 20 kg for Kathmandu, which was provided in the reference answer.",
+        "judge_model": "gemini-3.1-flash-lite",
+        "correct": false
+      },
+      {
+        "id": "B10",
+        "topic": "baggage",
+        "tags": [],
+        "answer": "I couldn't confirm this for your booking: the airline's baggage page doesn't mention the Stretch fare, so the general allowance may not apply to your ticket. Rather than guess, please check the official page below or contact the airline.\n\nPlease check the official page: https://www.goindigo.in/baggage/baggage-allowance.html\n\nBooking read from: TestAir website (test airline). Policy fetched live at 18 Oct 2026 08:39 UTC.",
+        "confidence": "low",
+        "could_not_confirm": true,
+        "topics_fetched": [
+          "baggage"
+        ],
+        "retrieval_ok": true,
+        "verified_quotes": 2,
+        "dropped_quotes": 0,
+        "includes_ok": true,
+        "cnc_expected": null,
+        "latency_s": 9.71,
+        "usage": {
+          "input_tokens": 5021,
+          "output_tokens": 565,
+          "cache_read_input_tokens": 0
+        },
+        "booking_error": null,
+        "infra_error": false,
+        "cnc_ok": true,
+        "judge_correct": true,
+        "judge_reason": "The actual answer correctly identifies that the information cannot be confirmed and avoids guessing, aligning with the reference answer's conclusion.",
+        "judge_model": "gemini-3.1-flash-lite",
+        "correct": true
+      },
+      {
+        "id": "B11",
+        "topic": "baggage",
+        "tags": [],
+        "answer": "I couldn't confirm this for your booking: the airline's baggage page doesn't mention the Lite fare, so the general allowance may not apply to your ticket. Rather than guess, please check the official page below or contact the airline.\n\nPlease check the official page: https://www.goindigo.in/baggage/baggage-allowance.html\n\nBooking read from: TestAir website (test airline). Policy fetched live at 18 Oct 2026 08:39 UTC.",
+        "confidence": "low",
+        "could_not_confirm": true,
+        "topics_fetched": [
+          "baggage"
+        ],
+        "retrieval_ok": true,
+        "verified_quotes": 1,
+        "dropped_quotes": 0,
+        "includes_ok": true,
+        "cnc_expected": true,
+        "latency_s": 15.43,
+        "usage": {
+          "input_tokens": 5022,
+          "output_tokens": 267,
+          "cache_read_input_tokens": 0
+        },
+        "booking_error": null,
+        "infra_error": false,
+        "cnc_ok": true,
+        "judge_correct": true,
+        "judge_reason": "The actual answer correctly identifies that the information cannot be confirmed and refers the user to the official website, consistent with the reference.",
+        "judge_model": "gemini-3.1-flash-lite",
+        "correct": true
+      },
+      {
+        "id": "B12",
+        "topic": "baggage",
+        "tags": [],
+        "answer": "I couldn't confirm this for your booking: the airline's baggage page doesn't list London (LHR), so the allowance for this route can't be confirmed. Rather than guess, please check the official page below or contact the airline.\n\nPlease check the official page: https://www.goindigo.in/baggage/baggage-allowance.html\n\nBooking read from: TestAir website (test airline). Policy fetched live at 18 Oct 2026 08:39 UTC.",
+        "confidence": "low",
+        "could_not_confirm": true,
+        "topics_fetched": [
+          "baggage"
+        ],
+        "retrieval_ok": true,
+        "verified_quotes": 2,
+        "dropped_quotes": 0,
+        "includes_ok": true,
+        "cnc_expected": true,
+        "latency_s": 16.88,
+        "usage": {
+          "input_tokens": 5137,
+          "output_tokens": 404,
+          "cache_read_input_tokens": 0
+        },
+        "booking_error": null,
+        "infra_error": false,
+        "cnc_ok": true,
+        "judge_correct": true,
+        "judge_reason": "The actual answer correctly concludes that the baggage allowance for London cannot be confirmed based on the provided policy documentation.",
+        "judge_model": "gemini-3.1-flash-lite",
+        "correct": true
+      },
+      {
+        "id": "B13",
+        "topic": "baggage",
+        "tags": [],
+        "answer": "Your booking is for a domestic flight (CCU to AMD) in Economy class, so the standard free check-in baggage allowance is 15 kg per person. \n\nHere is the breakdown for each passenger:\n- Passenger 1 (Adult): 15 kg free allowance + 10 kg extra prepaid baggage = 25 kg total.\n- Passenger 2 (Adult): 15 kg free allowance.\n- Passenger 3 (Child): 15 kg free allowance.\n- Passenger 4 (Child): 15 kg free allowance.\n\nBooking read from: TestAir website (test airline). Policy fetched live at 18 Oct 2026 08:39 UTC.",
+        "confidence": "high",
+        "could_not_confirm": false,
+        "topics_fetched": [
+          "baggage"
+        ],
+        "retrieval_ok": true,
+        "verified_quotes": 1,
+        "dropped_quotes": 0,
+        "includes_ok": true,
+        "cnc_expected": false,
+        "latency_s": 10.73,
+        "usage": {
+          "input_tokens": 5108,
+          "output_tokens": 360,
+          "cache_read_input_tokens": 0
+        },
+        "booking_error": null,
+        "infra_error": false,
+        "cnc_ok": true,
+        "judge_correct": true,
+        "judge_reason": "The actual answer accurately identifies the standard allowance for all passengers and correctly adds the extra 10kg to the first adult, matching the reference information.",
+        "judge_model": "gemini-3.1-flash-lite",
+        "correct": true
+      },
+      {
+        "id": "B14",
+        "topic": "baggage",
+        "tags": [],
+        "answer": "For your domestic flight, your hand baggage allowance is one handbag up to 7 kg (dimensions up to 115 cm / 55 x 35 x 25 cm) plus one personal article such as a ladies' purse or laptop bag weighing up to 3 kg. Your check-in baggage allowance is 15 kg per person.\n\nBooking read from: TestAir website (test airline). Policy fetched live at 18 Oct 2026 08:39 UTC.",
+        "confidence": "high",
+        "could_not_confirm": false,
+        "topics_fetched": [
+          "baggage"
+        ],
+        "retrieval_ok": true,
+        "verified_quotes": 3,
+        "dropped_quotes": 0,
+        "includes_ok": true,
+        "cnc_expected": false,
+        "latency_s": 14.98,
+        "usage": {
+          "input_tokens": 5139,
+          "output_tokens": 506,
+          "cache_read_input_tokens": 0
+        },
+        "booking_error": null,
+        "infra_error": false,
+        "cnc_ok": true,
+        "judge_correct": true,
+        "judge_reason": "The actual answer correctly identifies the check-in baggage allowance of 15 kg per person for the domestic flight as specified in the reference, while providing additional information about hand baggage.",
+        "judge_model": "gemini-3.1-flash-lite",
+        "correct": true
+      },
+      {
+        "id": "B15",
+        "topic": "baggage",
+        "tags": [],
+        "answer": "I couldn't confirm this for your booking: the airline's baggage page doesn't mention the Stretch fare, so the general allowance may not apply to your ticket. Rather than guess, please check the official page below or contact the airline.\n\nPlease check the official page: https://www.goindigo.in/baggage/baggage-allowance.html\n\nBooking read from: TestAir website (test airline). Policy fetched live at 18 Oct 2026 08:39 UTC.",
+        "confidence": "low",
+        "could_not_confirm": true,
+        "topics_fetched": [
+          "baggage"
+        ],
+        "retrieval_ok": true,
+        "verified_quotes": 1,
+        "dropped_quotes": 0,
+        "includes_ok": true,
+        "cnc_expected": true,
+        "latency_s": 9.31,
+        "usage": {
+          "input_tokens": 5028,
+          "output_tokens": 319,
+          "cache_read_input_tokens": 0
+        },
+        "booking_error": null,
+        "infra_error": false,
+        "cnc_ok": true,
+        "judge_correct": true,
+        "judge_reason": "The actual answer correctly identifies that the business/Stretch fare baggage allowance cannot be confirmed from the policy, matching the reference answer's conclusion.",
+        "judge_model": "gemini-3.1-flash-lite",
+        "correct": true
+      },
+      {
+        "id": "B16",
+        "topic": "baggage",
+        "tags": [],
+        "answer": "Please note that your booking is currently cancelled. \n\nFor your domestic flight from LKO to PNQ, your baggage allowance is:\n- Hand Baggage: One handbag up to 7 kg (dimensions up to 115 cm / 55cm x 35cm x 25cm) plus one personal article such as a ladies' purse or laptop bag weighing no more than 3 kg.\n- Check-in Baggage: 15 kg allowance per person.\n\nBooking read from: TestAir website (test airline). Policy fetched live at 18 Oct 2026 08:39 UTC.",
+        "confidence": "high",
+        "could_not_confirm": false,
+        "topics_fetched": [
+          "baggage"
+        ],
+        "retrieval_ok": true,
+        "verified_quotes": 3,
+        "dropped_quotes": 0,
+        "includes_ok": true,
+        "cnc_expected": null,
+        "latency_s": 15.27,
+        "usage": {
+          "input_tokens": 5018,
+          "output_tokens": 522,
+          "cache_read_input_tokens": 0
+        },
+        "booking_error": null,
+        "infra_error": false,
+        "cnc_ok": true,
+        "judge_correct": true,
+        "judge_reason": "The actual answer correctly identifies that the booking is cancelled and provides the correct baggage allowance of 15 kg stated in the reference, with additional accurate detail regarding hand baggage.",
+        "judge_model": "gemini-3.1-flash-lite",
+        "correct": true
+      },
+      {
+        "id": "B17",
+        "topic": "baggage",
+        "tags": [],
+        "answer": "Yes, you can carry a small bag containing your laptop along with your main hand baggage. You are permitted one handbag up to 7 kg (115 cm L+W+H), and additionally one personal article such as a small bag containing a laptop weighing not more than 3 kg.\n\nBooking read from: TestAir website (test airline). Policy fetched live at 18 Oct 2026 08:39 UTC.",
+        "confidence": "high",
+        "could_not_confirm": false,
+        "topics_fetched": [
+          "baggage"
+        ],
+        "retrieval_ok": true,
+        "verified_quotes": 1,
+        "dropped_quotes": 0,
+        "includes_ok": true,
+        "cnc_expected": false,
+        "latency_s": 19.92,
+        "usage": {
+          "input_tokens": 5027,
+          "output_tokens": 242,
+          "cache_read_input_tokens": 0
+        },
+        "booking_error": null,
+        "infra_error": false,
+        "cnc_ok": true,
+        "judge_correct": true,
+        "judge_reason": "The actual answer correctly confirms the policy and includes all the correct weight and dimension constraints as specified in the reference.",
+        "judge_model": "gemini-3.1-flash-lite",
+        "correct": true
+      },
+      {
+        "id": "C01",
+        "topic": "cancellation",
+        "tags": [],
+        "answer": "Yes, you can cancel your booking for free. \n\nYour booking was made 20.0 hours ago (within the 48-hour look-in window), booked directly on the airline's website, and your domestic flight from BOM to BLR is departing in 15.6 days (which is more than 7 days from the booking date), so the free cancellation look-in policy applies.\n\nBooking read from: TestAir website (test airline). Policy fetched live at 18 Oct 2026 08:40 UTC.",
+        "confidence": "high",
+        "could_not_confirm": false,
+        "topics_fetched": [
+          "cancellation"
+        ],
+        "retrieval_ok": true,
+        "verified_quotes": 2,
+        "dropped_quotes": 0,
+        "includes_ok": true,
+        "cnc_expected": false,
+        "latency_s": 18.98,
+        "usage": {
+          "input_tokens": 12917,
+          "output_tokens": 427,
+          "cache_read_input_tokens": 0
+        },
+        "booking_error": null,
+        "infra_error": false,
+        "cnc_ok": true,
+        "judge_correct": true,
+        "judge_reason": "The actual answer reaches the same conclusion, includes all necessary details, and accurately reflects the provided numbers and policy reasoning.",
+        "judge_model": "gemini-3.1-flash-lite",
+        "correct": true
+      },
+      {
+        "id": "C02",
+        "topic": "cancellation",
+        "tags": [],
+        "answer": "No, you are past the 48-hour free cancellation (look-in) window. Your booking was created 40.0 hours ago, but the look-in facility does not apply because your scheduled departure is 32.0 days away, which is more than 7 days from the date of booking. Therefore, standard cancellation fees will apply.\n\nBooking read from: TestAir website (test airline). Policy fetched live at 18 Oct 2026 08:40 UTC.",
+        "confidence": "high",
+        "could_not_confirm": false,
+        "topics_fetched": [
+          "cancellation"
+        ],
+        "retrieval_ok": true,
+        "verified_quotes": 2,
+        "dropped_quotes": 0,
+        "includes_ok": true,
+        "cnc_expected": false,
+        "latency_s": 21.0,
+        "usage": {
+          "input_tokens": 12924,
+          "output_tokens": 1193,
+          "cache_read_input_tokens": 0
+        },
+        "booking_error": null,
+        "infra_error": false,
+        "cnc_ok": true,
+        "judge_correct": false,
+        "judge_reason": "The actual answer incorrectly states that the 48-hour look-in window does not apply, contradicting the reference which correctly identifies that the window is still open for another 8 hours.",
+        "judge_model": "gemini-3.1-flash-lite",
+        "correct": false
+      },
+      {
+        "id": "C03",
+        "topic": "cancellation",
+        "tags": [],
+        "answer": "No, you cannot cancel without paying a fee because your booking was made via an agent rather than directly on the airline's website. \n\nThe 48-hour free cancellation (\"Look-in\") option requires that tickets be \"booked directly on the IndiGo\u2019s website.\" Since your booking was made through an agent, this policy does not apply to your reservation. Standard cancellation fees will apply.\n\nBooking read from: TestAir website (test airline). Policy fetched live at 18 Oct 2026 08:40 UTC.",
+        "confidence": "high",
+        "could_not_confirm": false,
+        "topics_fetched": [
+          "cancellation"
+        ],
+        "retrieval_ok": true,
+        "verified_quotes": 1,
+        "dropped_quotes": 0,
+        "includes_ok": true,
+        "cnc_expected": null,
+        "latency_s": 25.4,
+        "usage": {
+          "input_tokens": 12930,
+          "output_tokens": 432,
+          "cache_read_input_tokens": 0
+        },
+        "booking_error": null,
+        "infra_error": false,
+        "cnc_ok": true,
+        "judge_correct": true,
+        "judge_reason": "The actual answer correctly identifies that the cancellation policy does not apply because the booking was made through an agent, matching the reference's conclusion. It also correctly avoids asserting the specific fee amount, which the reference states cannot be confirmed.",
+        "judge_model": "gemini-3.1-flash-lite",
+        "correct": true
+      },
+      {
+        "id": "C04",
+        "topic": "cancellation",
+        "tags": [],
+        "answer": "Although you booked 5.0 hours ago (within the 48-hour look-in window) and booked directly via the airline website, you cannot cancel free of charge. Your scheduled departure from PNQ to COK is in 3.6 days (85.6 hours), which is within 7 days of booking, meaning the free cancellation look-in facility does not apply.\n\nBooking read from: TestAir website (test airline). Policy fetched live at 18 Oct 2026 08:40 UTC.",
+        "confidence": "high",
+        "could_not_confirm": false,
+        "topics_fetched": [
+          "cancellation"
+        ],
+        "retrieval_ok": true,
+        "verified_quotes": 2,
+        "dropped_quotes": 0,
+        "includes_ok": true,
+        "cnc_expected": null,
+        "latency_s": 28.26,
+        "usage": {
+          "input_tokens": 12926,
+          "output_tokens": 436,
+          "cache_read_input_tokens": 0
+        },
+        "booking_error": null,
+        "infra_error": false,
+        "cnc_ok": true,
+        "judge_correct": true,
+        "judge_reason": "The actual answer correctly concludes that the cancellation cannot be made free of charge and provides accurate, consistent details regarding the time elapsed and the proximity of the departure date to the booking time.",
+        "judge_model": "gemini-3.1-flash-lite",
+        "correct": true
+      },
+      {
+        "id": "C05",
+        "topic": "cancellation",
+        "tags": [],
+        "answer": "No, you can no longer cancel for free. \n\nThe free 48-hour \"Look-in\" cancellation window has passed for your booking:\n- Hours since booking: 60.0 hours (exceeds the 48-hour limit).\n- Booked via: airline_website (direct booking condition met).\n- Departure time: 22.6 days from booking (exceeds the 7-day domestic restriction).\n\nBecause 60.0 hours have elapsed since your booking was created on 2026-10-16, the Look-in period is no longer active, and standard cancellation charges will apply.\n\nBooking read from: TestAir website (test airline). Policy fetched live at 18 Oct 2026 08:40 UTC.",
+        "confidence": "high",
+        "could_not_confirm": false,
+        "topics_fetched": [
+          "cancellation"
+        ],
+        "retrieval_ok": true,
+        "verified_quotes": 2,
+        "dropped_quotes": 0,
+        "includes_ok": true,
+        "cnc_expected": null,
+        "latency_s": 22.36,
+        "usage": {
+          "input_tokens": 12914,
+          "output_tokens": 602,
+          "cache_read_input_tokens": 0
+        },
+        "booking_error": null,
+        "infra_error": false,
+        "cnc_ok": true,
+        "judge_correct": true,
+        "judge_reason": "The actual answer reaches the same correct conclusion and provides the matching number of 60 hours as found in the reference.",
+        "judge_model": "gemini-3.1-flash-lite",
+        "correct": true
+      },
+      {
+        "id": "C06",
+        "topic": "cancellation",
+        "tags": [],
+        "answer": "Yes, you can cancel your booking without any cancellation fee. \n\nYour booking was made 12.0 hours ago (within the 48-hour look-in period), is booked directly on the airline website, and your international flight to SIN is 20.4 days away (which is more than the required 15 days before departure for international flights). Therefore, the free look-in cancellation policy applies.\n\nBooking read from: TestAir website (test airline). Policy fetched live at 18 Oct 2026 08:40 UTC.",
+        "confidence": "high",
+        "could_not_confirm": false,
+        "topics_fetched": [
+          "cancellation"
+        ],
+        "retrieval_ok": true,
+        "verified_quotes": 2,
+        "dropped_quotes": 0,
+        "includes_ok": true,
+        "cnc_expected": false,
+        "latency_s": 25.15,
+        "usage": {
+          "input_tokens": 12913,
+          "output_tokens": 455,
+          "cache_read_input_tokens": 0
+        },
+        "booking_error": null,
+        "infra_error": false,
+        "cnc_ok": true,
+        "judge_correct": true,
+        "judge_reason": "The actual answer reaches the same correct conclusion, matches the booking time and flight distance criteria, and provides the correct logic for the look-in policy.",
+        "judge_model": "gemini-3.1-flash-lite",
+        "correct": true
+      },
+      {
+        "id": "C07",
+        "topic": "cancellation",
+        "tags": [],
+        "answer": "No, you cannot cancel free of charge. \n\nAlthough you booked this morning (12.0 hours ago) directly on the airline's website, your international flight from BOM to BKK departs in 9.8 days (247.3 hours from booking), which is within the 15-day exclusion window for international flights. Under the cancellation policy, the look-in option for free cancellation does not apply when the departure is within 15 days of booking for international flights.\n\nBooking read from: TestAir website (test airline). Policy fetched live at 18 Oct 2026 08:40 UTC.",
+        "confidence": "high",
+        "could_not_confirm": false,
+        "topics_fetched": [
+          "cancellation"
+        ],
+        "retrieval_ok": true,
+        "verified_quotes": 2,
+        "dropped_quotes": 0,
+        "includes_ok": true,
+        "cnc_expected": null,
+        "latency_s": 45.42,
+        "usage": {
+          "input_tokens": 12925,
+          "output_tokens": 528,
+          "cache_read_input_tokens": 0
+        },
+        "booking_error": null,
+        "infra_error": false,
+        "cnc_ok": true,
+        "judge_correct": true,
+        "judge_reason": "The actual answer correctly concludes that the cancellation is not free. It correctly identifies the 15-day exclusion window and explains that the flight falls within this timeframe (9.8 days). While it includes extra specific calculation details, these are consistent with the reference and do not contradict the policy.",
+        "judge_model": "gemini-3.1-flash-lite",
+        "correct": true
+      },
+      {
+        "id": "C08",
+        "topic": "cancellation",
+        "tags": [],
+        "answer": "You cannot make a free cancellation under the 48-hour Look-in policy. \n\nHere are the details for your booking:\n- Hours since booking: 47.0 hours (within the 48-hour window from booking time)\n- Booked via website: Yes\n- Time between booking and departure: 9.9 days (236.5 hours)\n\nHowever, the Look-in policy excludes domestic flights where the scheduled departure is within 7 days (168 hours) from the date of booking. Although your flight departs in 9.9 days, your booking was created 47.0 hours ago, but the exclusion rule specifies: \"This facility shall not be available where the scheduled departure is within 7 (seven) days for domestic flights or within 15 (international flights) from the date of booking.\" Wait, let's verify: your departure is 9.9 days away, which is *not* within 7 days. Let's check the look-in conditions precisely:\n- Booked within 48 hours of now? 47.0 hours, yes.\n- Booked directly on the website? Yes (`airline_website`).\n- Departure within 7 days of booking? 9.9 days (> 7 days), so the exclusion does *not* apply. \n\nTherefore, your booking *does* qualify for free cancellation under the 48-hour Look-in option because it was booked directly on the website within 48 hours and the departure is more than 7 days from the booking date.\n\nBooking read from: TestAir website (test airline). Policy fetched live at 18 Oct 2026 08:40 UTC.",
+        "confidence": "high",
+        "could_not_confirm": false,
+        "topics_fetched": [
+          "cancellation"
+        ],
+        "retrieval_ok": true,
+        "verified_quotes": 2,
+        "dropped_quotes": 0,
+        "includes_ok": true,
+        "cnc_expected": false,
+        "latency_s": 45.15,
+        "usage": {
+          "input_tokens": 12914,
+          "output_tokens": 725,
+          "cache_read_input_tokens": 0
+        },
+        "booking_error": null,
+        "infra_error": false,
+        "cnc_ok": true,
+        "judge_correct": false,
+        "judge_reason": "The actual answer is contradictory and confusing; it opens by stating the user cannot cancel, then concludes the user *does* qualify for free cancellation. The reference confirms it is eligible.",
+        "judge_model": "gemini-3.1-flash-lite",
+        "correct": false
+      },
+      {
+        "id": "C09",
+        "topic": "cancellation",
+        "tags": [],
+        "answer": "Your booking (T7****) is for a domestic flight (BOM to BLR) on a Saver fare, booked via the airline website 240.0 hours ago, with departure in 114.3 hours (4.8 days). \n\nThe airline offers a free 48-hour look-in period from the time of booking, but this facility is excluded because the scheduled departure is within 7 days of the booking date (4.8 days).\n\nBecause the standard domestic policy for this ticket category and domestic route is not detailed in the standard policy table (which focuses on codeshare/international rules), we cannot confirm the exact cancellation fee amount from the published policy pages. Please check the official TestAir/IndiGo policy page or contact customer service for further assistance.\n\nPlease check the official page: https://www.goindigo.in/travel-information/en/fees-and-charges.html\n\nBooking read from: TestAir website (test airline). Policy fetched live at 18 Oct 2026 08:40 UTC.",
+        "confidence": "low",
+        "could_not_confirm": true,
+        "topics_fetched": [
+          "cancellation"
+        ],
+        "retrieval_ok": true,
+        "verified_quotes": 2,
+        "dropped_quotes": 0,
+        "includes_ok": true,
+        "cnc_expected": true,
+        "latency_s": 67.4,
+        "usage": {
+          "input_tokens": 12922,
+          "output_tokens": 617,
+          "cache_read_input_tokens": 0
+        },
+        "booking_error": null,
+        "infra_error": false,
+        "cnc_ok": true,
+        "judge_correct": true,
+        "judge_reason": "The actual answer correctly identifies that the cancellation fee cannot be confirmed from the provided policy pages, consistent with the reference. It correctly identifies the booking context and directs the user to the official website.",
+        "judge_model": "gemini-3.1-flash-lite",
+        "correct": true
+      },
+      {
+        "id": "C10",
+        "topic": "cancellation",
+        "tags": [],
+        "answer": "I couldn't confirm this for your booking: the fee tables on the airline's fees page are for codeshare bookings, so the fee for your booking isn't stated there; the airline's baggage page doesn't mention the Stretch fare, so the general allowance may not apply to your ticket. Rather than guess, please check the official page below or contact the airline.\n\nPlease check the official page: https://www.goindigo.in/travel-information/en/fees-and-charges.html\n\nBooking read from: TestAir website (test airline). Policy fetched live at 18 Oct 2026 08:40 UTC.",
+        "confidence": "low",
+        "could_not_confirm": true,
+        "topics_fetched": [
+          "cancellation",
+          "baggage",
+          "web_checkin"
+        ],
+        "retrieval_ok": true,
+        "verified_quotes": 2,
+        "dropped_quotes": 0,
+        "includes_ok": true,
+        "cnc_expected": true,
+        "latency_s": 67.5,
+        "usage": {
+          "input_tokens": 41236,
+          "output_tokens": 708,
+          "cache_read_input_tokens": 10182
+        },
+        "booking_error": null,
+        "infra_error": false,
+        "cnc_ok": true,
+        "judge_correct": true,
+        "judge_reason": "The actual answer correctly identifies that the fee cannot be confirmed based on the provided policy and points the user to contact the airline or check the official site.",
+        "judge_model": "gemini-3.1-flash-lite",
+        "correct": true
+      },
+      {
+        "id": "C11",
+        "topic": "cancellation",
+        "tags": [],
+        "answer": "Your booking (reference T2****) is already cancelled. \n\nRegarding the Look-in policy for cancellations: the 48-hour free cancellation window does not apply to your booking because your international flight from BOM to DXB was booked 240.0 hours ago (exceeding the 48-hour limit) and the departure was scheduled within 15 days of booking (specifically 21.9 days, but the departure condition excludes international flights booked within 15 days of departure). Additionally, no cancellation charges or rules are listed for non-codeshare international Saver fares on the policy page.\n\nBooking read from: TestAir website (test airline). Policy fetched live at 18 Oct 2026 08:40 UTC.",
+        "confidence": "high",
+        "could_not_confirm": false,
+        "topics_fetched": [
+          "cancellation"
+        ],
+        "retrieval_ok": true,
+        "verified_quotes": 2,
+        "dropped_quotes": 0,
+        "includes_ok": true,
+        "cnc_expected": null,
+        "latency_s": 27.84,
+        "usage": {
+          "input_tokens": 12933,
+          "output_tokens": 654,
+          "cache_read_input_tokens": 0
+        },
+        "booking_error": null,
+        "infra_error": false,
+        "cnc_ok": true,
+        "judge_correct": true,
+        "judge_reason": "The actual answer correctly identifies that the booking is already cancelled, matching the reference. The extra details provided do not contradict the status.",
+        "judge_model": "gemini-3.1-flash-lite",
+        "correct": true
+      },
+      {
+        "id": "C12",
+        "topic": "cancellation",
+        "tags": [],
+        "answer": "You can change or cancel your international flight up to 4 hours prior to the scheduled departure time of TA 646. \n\nAdditionally, your booking qualified for the 48-hour look-in option since it was booked directly on the airline website and the departure was more than 15 days away from the booking date, allowing you to cancel or amend without change or cancellation fees during that initial 48-hour window (which has now passed, as your booking was made 240 hours ago).\n\nBooking read from: TestAir website (test airline). Policy fetched live at 18 Oct 2026 08:40 UTC.",
+        "confidence": "high",
+        "could_not_confirm": false,
+        "topics_fetched": [
+          "cancellation"
+        ],
+        "retrieval_ok": true,
+        "verified_quotes": 3,
+        "dropped_quotes": 0,
+        "includes_ok": true,
+        "cnc_expected": false,
+        "latency_s": 39.28,
+        "usage": {
+          "input_tokens": 12928,
+          "output_tokens": 643,
+          "cache_read_input_tokens": 0
+        },
+        "booking_error": null,
+        "infra_error": false,
+        "cnc_ok": true,
+        "judge_correct": true,
+        "judge_reason": "The actual answer correctly identifies the 4-hour window for international flight changes and cancellations. While it adds additional context about a 48-hour look-in window, this information does not contradict the primary policy and is presented as relevant to the specific booking details provided.",
+        "judge_model": "gemini-3.1-flash-lite",
+        "correct": true
+      },
+      {
+        "id": "C13",
+        "topic": "cancellation",
+        "tags": [],
+        "answer": "Since your flight from BOM to BLR was booked 20.0 hours ago (within the 48-hour look-in window) directly on the airline website, and your departure is 15.6 days away (which is more than 7 days from booking), you can amend your booking without paying a change fee. However, any fare difference between your original booking and the revised booking will be payable.\n\nBooking read from: TestAir website (test airline). Policy fetched live at 18 Oct 2026 08:40 UTC.",
+        "confidence": "high",
+        "could_not_confirm": false,
+        "topics_fetched": [
+          "cancellation"
+        ],
+        "retrieval_ok": true,
+        "verified_quotes": 2,
+        "dropped_quotes": 0,
+        "includes_ok": true,
+        "cnc_expected": false,
+        "latency_s": 43.58,
+        "usage": {
+          "input_tokens": 12935,
+          "output_tokens": 483,
+          "cache_read_input_tokens": 0
+        },
+        "booking_error": null,
+        "infra_error": false,
+        "cnc_ok": true,
+        "judge_correct": true,
+        "judge_reason": "The actual answer correctly identifies that there is no change fee due to the 48-hour window and specifies that the fare difference must be paid. The minor discrepancy in the days until departure (15 vs 15.6) does not impact the accuracy of the policy application.",
+        "judge_model": "gemini-3.1-flash-lite",
+        "correct": true
+      },
+      {
+        "id": "W01",
+        "topic": "web_checkin",
+        "tags": [],
+        "answer": "For your domestic flight from BOM to BLR, web check-in is available from 48 hours up to 60 minutes before your scheduled departure time.\n\nBooking read from: TestAir website (test airline). Policy fetched live at 18 Oct 2026 08:40 UTC.",
+        "confidence": "high",
+        "could_not_confirm": false,
+        "topics_fetched": [
+          "web_checkin"
+        ],
+        "retrieval_ok": true,
+        "verified_quotes": 1,
+        "dropped_quotes": 0,
+        "includes_ok": true,
+        "cnc_expected": false,
+        "latency_s": 14.87,
+        "usage": {
+          "input_tokens": 4781,
+          "output_tokens": 345,
+          "cache_read_input_tokens": 0
+        },
+        "booking_error": null,
+        "infra_error": false,
+        "cnc_ok": true,
+        "judge_correct": true,
+        "judge_reason": "The actual answer correctly identifies the check-in window (48 hours to 60 minutes) and matches the reference provided.",
+        "judge_model": "gemini-3.1-flash-lite",
+        "correct": true
+      },
+      {
+        "id": "W02",
+        "topic": "web_checkin",
+        "tags": [],
+        "answer": "For your international flight from HYD to DXB, web check-in opens 24 hours and closes 75 minutes before your flight departure.\n\nBooking read from: TestAir website (test airline). Policy fetched live at 18 Oct 2026 08:40 UTC.",
+        "confidence": "high",
+        "could_not_confirm": false,
+        "topics_fetched": [
+          "web_checkin"
+        ],
+        "retrieval_ok": true,
+        "verified_quotes": 1,
+        "dropped_quotes": 0,
+        "includes_ok": true,
+        "cnc_expected": false,
+        "latency_s": 11.14,
+        "usage": {
+          "input_tokens": 4783,
+          "output_tokens": 243,
+          "cache_read_input_tokens": 0
+        },
+        "booking_error": null,
+        "infra_error": false,
+        "cnc_ok": true,
+        "judge_correct": true,
+        "judge_reason": "The actual answer accurately reflects the policy provided in the reference and matches the numerical values for the check-in window.",
+        "judge_model": "gemini-3.1-flash-lite",
+        "correct": true
+      },
+      {
+        "id": "W03",
+        "topic": "web_checkin",
+        "tags": [],
+        "answer": "Yes, you can check in online right now. Your flight from BLR to JAI is domestic, and web check-in is available from 48 hours up to 60 minutes before domestic flight departures. Since your flight departs in 23.4 hours, you are within the eligible window.\n\nBooking read from: TestAir website (test airline). Policy fetched live at 18 Oct 2026 08:40 UTC.",
+        "confidence": "high",
+        "could_not_confirm": false,
+        "topics_fetched": [
+          "web_checkin"
+        ],
+        "retrieval_ok": true,
+        "verified_quotes": 1,
+        "dropped_quotes": 0,
+        "includes_ok": true,
+        "cnc_expected": false,
+        "latency_s": 15.4,
+        "usage": {
+          "input_tokens": 4775,
+          "output_tokens": 318,
+          "cache_read_input_tokens": 0
+        },
+        "booking_error": null,
+        "infra_error": false,
+        "cnc_ok": true,
+        "judge_correct": true,
+        "judge_reason": "The actual answer correctly concludes that online check-in is available and provides the matching policy window of 48 hours to 60 minutes. The additional detail provided is accurate and consistent with the reference.",
+        "judge_model": "gemini-3.1-flash-lite",
+        "correct": true
+      },
+      {
+        "id": "W04",
+        "topic": "web_checkin",
+        "tags": [],
+        "answer": "Yes, you can web check-in now. Your flight from DEL to DXB is international, and web check-in for international flights is available from 24 hours to 75 minutes before departure. Since your flight departs in 55.2 hours (2.3 days), you are currently within the allowed check-in window.\n\nBooking read from: TestAir website (test airline). Policy fetched live at 18 Oct 2026 08:40 UTC.",
+        "confidence": "high",
+        "could_not_confirm": false,
+        "topics_fetched": [
+          "web_checkin"
+        ],
+        "retrieval_ok": true,
+        "verified_quotes": 1,
+        "dropped_quotes": 0,
+        "includes_ok": true,
+        "cnc_expected": false,
+        "latency_s": 15.46,
+        "usage": {
+          "input_tokens": 4774,
+          "output_tokens": 795,
+          "cache_read_input_tokens": 0
+        },
+        "booking_error": null,
+        "infra_error": false,
+        "cnc_ok": true,
+        "judge_correct": false,
+        "judge_reason": "The actual answer incorrectly states that the user can check in now and that 55.2 hours is within the 24-hour window, whereas the reference correctly states the user cannot check in yet.",
+        "judge_model": "gemini-3.1-flash-lite",
+        "correct": false
+      },
+      {
+        "id": "W05",
+        "topic": "web_checkin",
+        "tags": [],
+        "answer": "You cannot web check-in for both of your connecting flights right now. Since you have a connecting flight and the departure time of one of the connections is beyond 48 hours from the web check-in window, you are not eligible for web check-in service for the connection outside that window. Web check-in for your domestic flights is available from 48 hours up to 60 minutes before each flight's departure.\n\nBooking read from: TestAir website (test airline). Policy fetched live at 18 Oct 2026 08:40 UTC.",
+        "confidence": "high",
+        "could_not_confirm": false,
+        "topics_fetched": [
+          "web_checkin"
+        ],
+        "retrieval_ok": true,
+        "verified_quotes": 2,
+        "dropped_quotes": 0,
+        "includes_ok": true,
+        "cnc_expected": null,
+        "latency_s": 15.56,
+        "usage": {
+          "input_tokens": 4896,
+          "output_tokens": 485,
+          "cache_read_input_tokens": 0
+        },
+        "booking_error": null,
+        "infra_error": false,
+        "cnc_ok": true,
+        "judge_correct": false,
+        "judge_reason": "The actual answer incorrectly states that the user cannot check in for both flights, contradicting the reference which confirms web check-in is available for both domestic legs on the same day.",
+        "judge_model": "gemini-3.1-flash-lite",
+        "correct": false
+      },
+      {
+        "id": "W06",
+        "topic": "web_checkin",
+        "tags": [],
+        "answer": "For your trip to London (LHR), web check-in is available from 24 hours to 75 minutes before your international flight departure. For your domestic flight from BLR to BOM, web check-in is available from 48 hours to 60 minutes before departure.\n\nBooking read from: TestAir website (test airline). Policy fetched live at 18 Oct 2026 08:40 UTC.",
+        "confidence": "high",
+        "could_not_confirm": false,
+        "topics_fetched": [
+          "web_checkin"
+        ],
+        "retrieval_ok": true,
+        "verified_quotes": 1,
+        "dropped_quotes": 0,
+        "includes_ok": true,
+        "cnc_expected": null,
+        "latency_s": 14.33,
+        "usage": {
+          "input_tokens": 4896,
+          "output_tokens": 294,
+          "cache_read_input_tokens": 0
+        },
+        "booking_error": null,
+        "infra_error": false,
+        "cnc_ok": true,
+        "judge_correct": true,
+        "judge_reason": "The actual answer correctly identifies the check-in windows for both legs of the trip and matches the numbers provided in the reference, correctly interpreting the policy application.",
+        "judge_model": "gemini-3.1-flash-lite",
+        "correct": true
+      },
+      {
+        "id": "W07",
+        "topic": "web_checkin",
+        "tags": [],
+        "answer": "For your domestic flight from LKO to GOI, airport check-in at the counters is available up to 60 minutes before departure.\n\nBooking read from: TestAir website (test airline). Policy fetched live at 18 Oct 2026 08:40 UTC.",
+        "confidence": "high",
+        "could_not_confirm": false,
+        "topics_fetched": [
+          "web_checkin"
+        ],
+        "retrieval_ok": true,
+        "verified_quotes": 1,
+        "dropped_quotes": 0,
+        "includes_ok": true,
+        "cnc_expected": false,
+        "latency_s": 13.62,
+        "usage": {
+          "input_tokens": 4815,
+          "output_tokens": 252,
+          "cache_read_input_tokens": 0
+        },
+        "booking_error": null,
+        "infra_error": false,
+        "cnc_ok": true,
+        "judge_correct": true,
+        "judge_reason": "The actual answer correctly identifies the 60-minute cutoff for domestic flights and includes the context of the flight path which does not contradict the policy.",
+        "judge_model": "gemini-3.1-flash-lite",
+        "correct": true
+      },
+      {
+        "id": "W08",
+        "topic": "web_checkin",
+        "tags": [],
+        "answer": "For your international flight to MCT, airport check-in at the counters is available up to 75 minutes before departure.\n\nBooking read from: TestAir website (test airline). Policy fetched live at 18 Oct 2026 08:40 UTC.",
+        "confidence": "high",
+        "could_not_confirm": false,
+        "topics_fetched": [
+          "web_checkin"
+        ],
+        "retrieval_ok": true,
+        "verified_quotes": 1,
+        "dropped_quotes": 0,
+        "includes_ok": true,
+        "cnc_expected": false,
+        "latency_s": 13.78,
+        "usage": {
+          "input_tokens": 4790,
+          "output_tokens": 268,
+          "cache_read_input_tokens": 0
+        },
+        "booking_error": null,
+        "infra_error": false,
+        "cnc_ok": true,
+        "judge_correct": true,
+        "judge_reason": "The actual answer correctly identifies the check-in closing time of 75 minutes and accurately addresses the flight to Muscat (MCT).",
+        "judge_model": "gemini-3.1-flash-lite",
+        "correct": true
+      },
+      {
+        "id": "W09",
+        "topic": "web_checkin",
+        "tags": [],
+        "answer": "Your booking (TP****) is currently cancelled. However, for domestic flights, web check-in is available from 48 hours up to 60 minutes before departure.\n\nBooking read from: TestAir website (test airline). Policy fetched live at 18 Oct 2026 08:40 UTC.",
+        "confidence": "high",
+        "could_not_confirm": false,
+        "topics_fetched": [
+          "web_checkin"
+        ],
+        "retrieval_ok": true,
+        "verified_quotes": 1,
+        "dropped_quotes": 0,
+        "includes_ok": true,
+        "cnc_expected": null,
+        "latency_s": 14.02,
+        "usage": {
+          "input_tokens": 4773,
+          "output_tokens": 268,
+          "cache_read_input_tokens": 0
+        },
+        "booking_error": null,
+        "infra_error": false,
+        "cnc_ok": true,
+        "judge_correct": false,
+        "judge_reason": "The actual answer fails to correctly state the conclusion that there is nothing to check in for due to the cancellation, instead providing general check-in policy information for a flight that cannot be checked into.",
+        "judge_model": "gemini-3.1-flash-lite",
+        "correct": false
+      },
+      {
+        "id": "F01",
+        "topic": "baggage",
+        "tags": [
+          "failure"
+        ],
+        "answer": "Because the booking system is currently unavailable, I cannot retrieve your specific booking details. However, under standard IndiGo policy, the check-in baggage allowance depends on your route:\n- For domestic travel within India, the check-in baggage allowance is 15 kg per person (with an extra 10 kg for Double or MultiSeats bookings).\n- For specific international destinations such as Bangkok, Bali, Kathmandu, Krabi, Male, Mauritius, and Phuket, the allowance is 20 kg per person.\n- For Jeddah and Madinah, the allowance is 30 kg per person (including Zam Zam water for flights from Jeddah and Madinah to India).\n- For Abu Dhabi, Almaty, Amsterdam, Bahrain, Baku, Colombo, Dammam, Dhaka, Dubai, Fujairah, Guangzhou, Hanoi, Ho Chi Minh City, Hong Kong, Istanbul, Jakarta, Kuala Lumpur, Langkawi, Manchester, Muscat, Penang, Ras Al Khaimah, Riyadh, Seychelles, Sharjah, Siam Reap, Singapore, Tashkent, and Tbilisi, the allowance is 30 kg per person.\n- For Nairobi, the allowance is 25 kg per person.\n- For Jaffna, the allowance is 15 kg per person.\n- For India to Kuwait / Kuwait to India, the allowance is up to 30 kg total (including a suitably packed cardboard box).\n- Infants have a check-in baggage allowance of NIL (though one stroller or baby pram per infant is allowed free of charge).\n\nPlease check your specific route and fare details on the official IndiGo website to confirm your exact allowance.\n\nPlease check the official page: https://www.goindigo.in/baggage/baggage-allowance.html\n\nBooking source: TestAir website (test airline) (could not be read). Policy fetched live at 18 Oct 2026 08:39 UTC.",
+        "confidence": "low",
+        "could_not_confirm": true,
+        "topics_fetched": [
+          "baggage"
+        ],
+        "retrieval_ok": true,
+        "verified_quotes": 7,
+        "dropped_quotes": 1,
+        "includes_ok": true,
+        "cnc_expected": true,
+        "latency_s": 16.49,
+        "usage": {
+          "input_tokens": 4643,
+          "output_tokens": 1044,
+          "cache_read_input_tokens": 0
+        },
+        "booking_error": "unavailable",
+        "infra_error": false,
+        "cnc_ok": true,
+        "judge_correct": true,
+        "judge_reason": "The model correctly identified that it could not retrieve specific booking details due to a system error and provided the generic policy figures with the necessary caveats.",
+        "judge_model": "gemini-3.1-flash-lite",
+        "correct": true
+      },
+      {
+        "id": "F02",
+        "topic": "baggage",
+        "tags": [
+          "failure"
+        ],
+        "answer": "I couldn't confirm the check-in baggage allowance for your booking because the booking details could not be retrieved due to a human verification requirement on the booking source. Please check your booking details directly on the official website.\n\nPlease check the official page: https://www.goindigo.in/baggage/baggage-allowance.html\n\nBooking source: TestAir website (test airline) (could not be read). Policy fetched live at 18 Oct 2026 08:39 UTC.",
+        "confidence": "medium",
+        "could_not_confirm": true,
+        "topics_fetched": [
+          "baggage"
+        ],
+        "retrieval_ok": true,
+        "verified_quotes": 0,
+        "dropped_quotes": 1,
+        "includes_ok": true,
+        "cnc_expected": true,
+        "latency_s": 8.45,
+        "usage": {
+          "input_tokens": 4650,
+          "output_tokens": 222,
+          "cache_read_input_tokens": 0
+        },
+        "booking_error": "captcha",
+        "infra_error": false,
+        "cnc_ok": true,
+        "judge_correct": true,
+        "judge_reason": "The actual answer correctly identifies that the booking could not be read due to a human verification requirement and directs the user to the airline's official policy page, which matches the conclusion and scope of the reference answer.",
+        "judge_model": "gemini-3.1-flash-lite",
+        "correct": true
+      },
+      {
+        "id": "F03",
+        "topic": "baggage",
+        "tags": [
+          "failure"
+        ],
+        "answer": "Your check-in baggage allowance for your flight from BOM to BLR is 15 kg per person.\n\nBooking read from: TestAir website (test airline). Policy fetched live at 18 Oct 2026 08:39 UTC.",
+        "confidence": "high",
+        "could_not_confirm": false,
+        "topics_fetched": [
+          "baggage"
+        ],
+        "retrieval_ok": true,
+        "verified_quotes": 1,
+        "dropped_quotes": 0,
+        "includes_ok": true,
+        "cnc_expected": false,
+        "latency_s": 13.66,
+        "usage": {
+          "input_tokens": 5026,
+          "output_tokens": 267,
+          "cache_read_input_tokens": 0
+        },
+        "booking_error": null,
+        "infra_error": false,
+        "cnc_ok": true,
+        "judge_correct": true,
+        "judge_reason": "The actual answer matches the reference weight of 15 kg and correctly identifies the flight as domestic (BOM to BLR).",
+        "judge_model": "gemini-3.1-flash-lite",
+        "correct": true
+      },
+      {
+        "id": "F04",
+        "topic": "baggage",
+        "tags": [
+          "failure"
+        ],
+        "answer": "For your flight from HYD to DXB, your check-in baggage allowance is 30kg.\n\nBooking read from: TestAir website (test airline). Policy fetched live at 18 Oct 2026 08:39 UTC.",
+        "confidence": "high",
+        "could_not_confirm": false,
+        "topics_fetched": [
+          "baggage"
+        ],
+        "retrieval_ok": true,
+        "verified_quotes": 1,
+        "dropped_quotes": 0,
+        "includes_ok": true,
+        "cnc_expected": false,
+        "latency_s": 9.22,
+        "usage": {
+          "input_tokens": 5024,
+          "output_tokens": 268,
+          "cache_read_input_tokens": 0
+        },
+        "booking_error": null,
+        "infra_error": false,
+        "cnc_ok": true,
+        "judge_correct": true,
+        "judge_reason": "The actual answer correctly identifies the check-in baggage allowance as 30kg, which matches the reference.",
+        "judge_model": "gemini-3.1-flash-lite",
+        "correct": true
+      },
+      {
+        "id": "F05",
+        "topic": "baggage",
+        "tags": [
+          "failure"
+        ],
+        "answer": "I am sorry, but I was unable to retrieve the official baggage policy information at this moment due to a technical issue accessing the airline's policy pages. \n\nFor your booking from BOM to BLR on the Saver fare, please check the check-in baggage allowance directly on the official IndiGo baggage allowance page at https://www.goindigo.in/baggage/baggage-allowance.html.\n\nBooking read from: TestAir website (test airline). Policy: not available.",
+        "confidence": "low",
+        "could_not_confirm": true,
+        "topics_fetched": [],
+        "retrieval_ok": true,
+        "verified_quotes": 0,
+        "dropped_quotes": 0,
+        "includes_ok": true,
+        "cnc_expected": true,
+        "latency_s": 28.97,
+        "usage": {
+          "input_tokens": 7233,
+          "output_tokens": 217,
+          "cache_read_input_tokens": 0
+        },
+        "booking_error": null,
+        "infra_error": false,
+        "cnc_ok": true,
+        "judge_correct": true,
+        "judge_reason": "The actual answer correctly identifies that it cannot provide specific baggage information due to a technical issue and directs the user to the official website, which aligns with the reference answer.",
+        "judge_model": "gemini-3.1-flash-lite",
+        "correct": true
+      }
+    ],
+    "not_run_yet": []
+  }
+}

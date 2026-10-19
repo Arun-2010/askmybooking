@@ -16,6 +16,18 @@ category, cabin, each passenger type (adult/child/infant), extra baggage already
 booking channel (`booked_via`), and the computed time facts. For cancellation or change questions, check \
 any conditions on the look-in / free-change window explicitly against `hours_since_booking`, \
 `booked_via` and the time between booking and departure.
+- Before applying a rule, check the page names this booking's case: a special fare (Lite, Stretch, \
+Super 6E and similar) must be named for its rule to apply, and an international route's destination must \
+be listed. A general or neighbouring row (another city, a codeshare table) is not the rule for this booking.
+- Fill `working` BEFORE `answer`. In `working`, list each condition of the rule you are applying, this \
+booking's number for it, and whether it is met, e.g. "Booked within 48 h of now? 20.0 h, yes. Booked on the \
+airline website? yes. Departure within 7 days of booking? 15.6 days, no, so the exclusion does not apply. \
+Result: free cancellation applies." Then write `answer` from that result. The customer never sees \
+`working`; the answer must not contradict it.
+- Refer to airports by the codes in the booking (e.g. CCU). Don't expand a code into a city name unless the \
+booking or the page gives that name.
+- Fee tables marked as codeshare apply only to codeshare bookings; a fee from such a table is not this \
+booking's fee unless the booking is a codeshare.
 - If the page does not state a rule for this booking's case (for example it lists fees for other fare \
 types only), or two passages conflict and you can't tell which applies, set could_not_confirm to true, say \
 plainly what you could not confirm, and point the customer to the official page. A clear "I couldn't \
@@ -40,6 +52,8 @@ passages or the match needs a small assumption (state it); "low" otherwise.
 ANSWER_SCHEMA = {
     "type": "object",
     "properties": {
+        # Filled first: the model's condition-by-condition check. Never shown to the customer.
+        "working": {"type": "string"},
         "answer": {"type": "string"},
         "evidence": {
             "type": "array",
@@ -54,6 +68,6 @@ ANSWER_SCHEMA = {
         "could_not_confirm": {"type": "boolean"},
         "topics_used": {"type": "array", "items": {"type": "string", "enum": ["baggage", "cancellation", "web_checkin"]}},
     },
-    "required": ["answer", "evidence", "confidence", "could_not_confirm", "topics_used"],
+    "required": ["working", "answer", "evidence", "confidence", "could_not_confirm", "topics_used"],
     "additionalProperties": False,
 }

@@ -169,8 +169,9 @@ ago"), so these cases stay valid on any date.
 | Failure switches (CAPTCHA, server crash, redesigned page, slow site, wrong PNR) | **5/5** handled correctly |
 | Live IndiGo policy fetch | 4/4 official pages |
 | First real AI answers (Gemini) | Correct, every quote verified on the page (20 kg baggage; free cancellation within the 48-hour window) |
-| Automated tests | 51 unit + 11 browser tests passing |
-| 44-question answer accuracy | In progress on the free Gemini tier (20 requests/day per model); see [`eval/results/`](eval/results/) |
+| Automated tests | 61 unit + 11 browser tests passing |
+| 44-question answer accuracy, AI-graded (agent: free `gemini-3.5-flash-lite`; grader: `gemini-3.1-flash-lite`) | **86.4%** (38/44); "couldn't confirm" behaviour **100%**; right policy page **100%**; quotes verified **95.9%**. See [`eval/results/latest.md`](eval/results/latest.md) |
+| Remaining misses | Time-window arithmetic by the small model (e.g. "55 h away" read as inside a 24 h window). In spot checks a full-size model (`gemini-3.5-flash`) answered those cases correctly |
 
 The 44 questions ([`eval/cases.yaml`](eval/cases.yaml)) are 17 baggage, 13 cancellation, 9 web check-in and
 5 failure cases. Expected answers were written against frozen copies of IndiGo's pages
@@ -194,8 +195,9 @@ or a codeshare fee table that looks relevant but isn't.
 - IndiGo's fetched pages don't cover everything (its own domestic fee table, Lite/business fares); the agent says
   "couldn't confirm" rather than guessing.
 - Policy fetching opens a visible browser because IndiGo blocks hidden ones (rare, thanks to the cache).
-- Next: complete the 44-question run on a paid or multi-model quota, and add a "book a ticket" flow to TestAir for
-  live demos.
+- The free lite model makes time-window arithmetic mistakes; a full-size model fixes them but the free tier allows
+  only ~20 requests/day per model. Next: run the 44 questions on a full-size model (paid quota), and add a
+  "book a ticket" flow to TestAir for live demos.
 
 ## Project layout
 

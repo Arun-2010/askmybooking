@@ -197,8 +197,8 @@ Metrics (written to `eval/results/`):
 - [x] **Phase 1 — Policy fetcher:** (httpx → fresh headed browser per page; IndiGo stalls plain HTTP and blocks headless) verified URLs in config, fetch, clean, snapshot store, cache, hash diff.
 - [x] **Phase 2 — Mock TestAir site:** FastAPI app, seed bookings, JSON endpoint, failure switches.
 - [~] **Phase 3 — Booking sources:** (mock + e-ticket done, 100% extraction; live IndiGo = assisted capture via CDP, field_paths filled from first own-booking capture) `BookingSource` protocol, mock source, e-ticket parser, live IndiGo source (attempt).
-- [x] **Phase 4 — Agent:** (tested with a scripted fake client; not yet run against the API) tools, prompt, loop, structured `AgentAnswer`, evidence validation.
-- [~] **Phase 5 — Evaluation:** (44 cases + runner done; non-LLM metrics reported; `--llm` run pending API key) cases, runner, metrics report.
+- [x] **Phase 4 — Agent:** (Gemini + Claude loops; hidden `working` field; code guards for special fares, unlisted destinations, codeshare-only fees) tools, prompt, loop, structured `AgentAnswer`, evidence validation.
+- [x] **Phase 5 — Evaluation:** (2026-10-19: 86.4% AI-graded on free gemini-3.5-flash-lite, could-not-confirm 100%; resumable runner with judge fallback. Next: full-size model run) cases, runner, metrics report.
 - [x] **Phase 6 — Demo:** Streamlit UI with live progress steps; README with results, limitations, and the "real products use airline APIs/GDS" note.
 
 ## Working conventions

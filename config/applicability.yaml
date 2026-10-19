@@ -1,0 +1,29 @@
+# Code-enforced "couldn't confirm" guards (CLAUDE.md agent rule 3).
+#
+# The AI is told to say "couldn't confirm" when the fetched page doesn't cover the
+# booking. These checks make that rule hold even when the AI is overconfident:
+# if a guard fires, the answer is marked could_not_confirm and the reason is shown.
+
+indigo:
+  # Airports in the airline's home country. For an international flight, the
+  # *other* end is the destination the baggage page must name.
+  home_airports: [DEL, BOM, BLR, HYD, MAA, CCU, GOI, GOX, PNQ, AMD, COK, JAI, LKO, TRV, IXC,
+                  ATQ, GAU, BBI, NAG, IDR, VNS, PAT, SXR, IXB, CJB, IXE, VTZ, RPR, BDQ, STV]
+  baggage:
+    # Fares whose baggage differs from the general allowance: the page must name them.
+    fares_needing_explicit_rule: [Lite, Stretch, Stretch Plus, Super 6E]
+    # International airports -> names as the policy page may write them.
+    destination_names:
+      DXB: [Dubai]
+      SIN: [Singapore]
+      BKK: [Bangkok]
+      DOH: [Doha]
+      KTM: [Kathmandu]
+      LHR: [London, Heathrow]
+      IST: [Istanbul]
+      MCT: [Muscat]
+  cancellation:
+    # Verified 2026-10-18 on the fees page: its change/cancellation fee tables are all
+    # headed "Codeshare"; IndiGo's own fee table is only linked. So a fee amount quoted
+    # for a non-codeshare booking can't be confirmed from this page.
+    fee_tables_codeshare_only: true

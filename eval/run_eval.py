@@ -188,12 +188,15 @@ JUDGE_SCHEMA = {
 }
 
 
-def judge(client, question: str, expected: str, actual: str, provider: str = "anthropic") -> dict:
+def judge(client, question: str, expected: str, actual: str, provider: str = "anthropic",
+          model: str | None = None) -> dict:
     prompt = (
         "You grade an airline-policy assistant. Compare the ACTUAL answer with the REFERENCE answer.\n"
         "Mark correct=true if the actual answer reaches the same conclusion for this booking and every number it "
         "states that also appears in the reference matches. Extra correct detail is fine. Mark false if it states a "
-        "wrong number, the wrong conclusion, or confidently answers where the reference says it can't be confirmed.\n\n"
+        "wrong number, the wrong conclusion, contradicts itself (e.g. opens with 'yes' and then explains why not), "
+        "names the wrong city or airport, or confidently answers where the reference says it can't be confirmed. "
+        "Ignore the final 'Booking read from ... Policy ...' provenance line.\n\n"
         f"QUESTION: {question}\n\nREFERENCE: {expected}\n\nACTUAL: {actual}"
     )
     if provider == "gemini":
@@ -203,18 +206,46 @@ def judge(client, question: str, expected: str, actual: str, provider: str = "an
 
         pace()
         resp = client.models.generate_content(
-            model=config.judge_model("gemini"), contents=prompt,
+            model=model or config.judge_model("gemini"), contents=prompt,
             config=types.GenerateContentConfig(response_mime_type="application/json",
                                                response_json_schema=_clean_schema(JUDGE_SCHEMA)),
         )
         return json.loads(resp.text)
     resp = client.messages.create(
-        model=config.judge_model("anthropic"), max_tokens=2000,
+        model=model or config.judge_model("anthropic"), max_tokens=2000,
         messages=[{"role": "user", "content": prompt}],
         output_config={"effort": "low", "format": {"type": "json_schema", "schema": JUDGE_SCHEMA}},
     )
     text = "".join(b.text for b in resp.content if b.type == "text")
     return json.loads(text)
+
+
+def judge_models(provider: str) -> list[str]:
+    """JUDGE_MODELS (comma list) lets grading move to another model when one hits its daily quota."""
+    listed = [m.strip() for m in (os.getenv("JUDGE_MODELS") or "").split(",") if m.strip()]
+    return listed or [config.judge_model(provider)]
+
+
+_exhausted: set[str] = set()
+
+
+def judge_with_fallback(client, provider: str, question: str, expected: str, actual: str) -> dict:
+    last = None
+    for m in judge_models(provider):
+        if m in _exhausted:
+            continue
+        for attempt in range(3):
+            try:
+                out = judge(client, question, expected, actual, provider, model=m)
+                out["judge_model"] = m
+                return out
+            except Exception as e:
+                last = e
+                if "429" in str(e) and "PerDay" in str(e):
+                    _exhausted.add(m)  # daily quota gone: next model
+                    break
+                time.sleep(15 * (attempt + 1))
+    raise RuntimeError(f"all judge models failed: {last!r}"[:300])
 
 
 def includes_ok(answer: str, groups: list[list[str]]) -> bool:
@@ -239,6 +270,13 @@ def eval_answers(case_ids: set[str] | None, use_judge: bool, resume: bool = Fals
 
         client = anthropic.Anthropic()
     print(f"  provider={provider} model={config.agent_model(provider)}")
+    def apply_judge(row: dict, c: dict) -> None:
+        try:
+            j = judge_with_fallback(client, provider, c["question"], c["expected_answer"], row["answer"])
+            row["judge_correct"], row["judge_reason"], row["judge_model"] = j["correct"], j["reason"], j["judge_model"]
+        except Exception as e:  # grading failure is recorded, never counted as right or wrong
+            row["judge_correct"], row["judge_reason"] = None, f"judge error: {e!r}"[:200]
+
     def run_case(c: dict) -> dict:
         b = seeds[c["booking"]]
         src = MockTestAirSource(switches={k: str(v) for k, v in (c.get("switches") or {}).items()})
@@ -265,15 +303,7 @@ def eval_answers(case_ids: set[str] | None, use_judge: bool, resume: bool = Fals
         exp = c.get("expect_could_not_confirm")
         row["cnc_ok"] = exp is None or exp == a.could_not_confirm
         if use_judge:
-            row["judge_correct"], row["judge_reason"] = None, ""
-            for attempt in range(4):
-                try:
-                    j = judge(client, c["question"], c["expected_answer"], a.answer, provider)
-                    row["judge_correct"], row["judge_reason"] = j["correct"], j["reason"]
-                    break
-                except Exception as e:  # judge failure shouldn't kill the run
-                    row["judge_reason"] = f"judge error: {e!r}"[:200]
-                    time.sleep(15 * (attempt + 1))
+            apply_judge(row, c)
         row["correct"] = row["includes_ok"] and row["cnc_ok"] and row.get("judge_correct", True) is not False
         print(" ok" if row["correct"] else " WRONG", f"({row['latency_s']}s)")
         return row
@@ -289,6 +319,16 @@ def eval_answers(case_ids: set[str] | None, use_judge: bool, resume: bool = Fals
     RESULTS.mkdir(parents=True, exist_ok=True)
 
     selected = [c for c in spec["cases"] if not case_ids or c["id"] in case_ids]
+    if use_judge:
+        ungraded = [c for c in selected if c["id"] in done and done[c["id"]].get("judge_correct") is None]
+        if ungraded:
+            print(f"  grading {len(ungraded)} saved answer(s) ...")
+        for c in ungraded:
+            row = done[c["id"]]
+            apply_judge(row, c)
+            row["correct"] = row["includes_ok"] and row["cnc_ok"] and row.get("judge_correct", True) is not False
+            print(f"  {c['id']} judged: {'ok' if row['correct'] else 'WRONG'}")
+            progress_path.write_text(json.dumps(done, indent=1, default=str), encoding="utf-8")
     streak = 0
     for c in selected:
         if c["id"] in done:
@@ -334,7 +374,8 @@ def summarize_answers(all_rows: list[dict]) -> dict:
         "groundedness": vq / (vq + dq) if vq + dq else None,
         "answers_with_verified_evidence": sum(1 for r in rows if r["verified_quotes"]) / n if n else None,
         "latency_p50_s": p(lat, 0.5), "latency_p95_s": p(lat, 0.95),
-        "tokens_in": tin, "tokens_out": tout, "approx_cost_usd": round(tin / 1e6 * PRICE_IN + tout / 1e6 * PRICE_OUT, 2),
+        "tokens_in": tin, "tokens_out": tout, "approx_cost_usd": (round(tin / 1e6 * PRICE_IN + tout / 1e6 * PRICE_OUT, 2)
+                            if config.agent_provider() == "anthropic" else None),
         "rows": all_rows,
     }
 
@@ -370,7 +411,7 @@ def write_report(report: dict) -> Path:
                f"| Policy retrieval accuracy (right topic fetched) | {pct(ans['policy_retrieval_accuracy'])} |",
                f"| Groundedness (verified quotes / all quotes) | {pct(ans['groundedness']) if ans['groundedness'] is not None else 'n/a'} |",
                f"| Latency p50 / p95 | {ans['latency_p50_s']}s / {ans['latency_p95_s']}s |",
-               f"| Tokens in / out (≈ cost) | {ans['tokens_in']:,} / {ans['tokens_out']:,} (≈ ${ans['approx_cost_usd']}) |", "",
+               f"| Tokens in / out (≈ cost) | {ans['tokens_in']:,} / {ans['tokens_out']:,} ({'≈ $' + str(ans['approx_cost_usd']) if ans['approx_cost_usd'] is not None else 'Gemini free tier'}) |", "",
                "By group: " + ", ".join(f"{k} {pct(v)}" for k, v in ans["accuracy_by_group"].items()), "",
                "| Case | Correct | Could not confirm | Conf. | Quotes ✓/✗ | Note |", "|---|---|---|---|---|---|"]
         for r in ans["rows"]:
